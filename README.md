@@ -1,8 +1,13 @@
-# ts-package-webpack-template
+# Frontend Templates
 
-## A template for build pure js npm package with webpack,ts,eslint
+## Current Batch:ts-sdk-rollup
 
-### this batch is a simple ts project without webpack
+A template for npm package with ts,rollup,eslint
 
-### Tip
-lts node version need;
+## Checklist
+
+- [ ] edit name,main,module,browser... of package.json
+- [ ] remove test/example.test.ts
+- [ ] change eslint config
+- [ ] edit README.md
+- [ ] start with src/index.ts

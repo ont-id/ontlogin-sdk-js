@@ -1,3 +1,3 @@
-export const example = (message: string): string => {
-  return `it work: ${message}`;
-};
+const example = (msg: string): string => `it work:${msg}`;
+
+export default example;
