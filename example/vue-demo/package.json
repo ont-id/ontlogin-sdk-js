@@ -1,0 +1,20 @@
+{
+  "name": "vue-demo",
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "serve": "vite preview"
+  },
+  "dependencies": {
+    "@ont-dev/ontology-dapi": "^0.5.7",
+    "buffer": "^6.0.3",
+    "vue": "^3.0.5"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^1.3.0",
+    "@vue/compiler-sfc": "^3.0.5",
+    "rollup-plugin-polyfill-node": "^0.7.0",
+    "vite": "^2.4.4"
+  }
+}

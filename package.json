@@ -1,26 +1,27 @@
 {
-  "name": "packagename",
-  "version": "1.0.0",
-  "description": "A template for npm package with ts,rollup,eslint",
-  "main": "dist/packagename.cjs.js",
-  "module": "dist/packagename.es.js",
-  "browser": "dist/packagename.js",
+  "name": "ontlogin",
+  "version": "0.0.1",
+  "description": "ONT LOGIN JS SDK",
+  "main": "dist/ontlogin.cjs.js",
+  "module": "dist/ontlogin.es.js",
+  "browser": "dist/ontlogin.js",
   "scripts": {
-    "build": "rollup -c",
+    "build": "npm run clean && rollup -c",
     "prepublishOnly": "npm run build",
-    "lint": "eslint --fix 'src/**/*.ts'",
-    "test": "jest"
+    "lint": "eslint --fix --ext .js,.ts src",
+    "test": "jest",
+    "clean": "rm -rf dist"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/zeyuyuan/frontend-templates.git"
+    "url": "git+https://github.com/ontology-tech/ont-login-js-sdk.git"
   },
-  "author": "yzy@pcomg.com",
+  "author": "yuanzeyu@onchain.com",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/zeyuyuan/frontend-templates/issues"
+    "url": "https://github.com/ontology-tech/ont-login-js-sdk/issues"
   },
-  "homepage": "https://github.com/zeyuyuan/frontend-templates#readme",
+  "homepage": "https://github.com/ontology-tech/ont-login-js-sdk#readme",
   "devDependencies": {
     "@babel/core": "^7.15.0",
     "@babel/preset-env": "^7.15.0",
@@ -29,12 +30,15 @@
     "@rollup/plugin-node-resolve": "^13.0.4",
     "@rollup/plugin-typescript": "^8.2.5",
     "@types/jest": "^26.0.24",
-    "@typescript-eslint/eslint-plugin": "^4.29.1",
-    "@typescript-eslint/parser": "^4.29.1",
+    "@typescript-eslint/eslint-plugin": "^4.29.2",
+    "@typescript-eslint/parser": "^4.29.2",
     "eslint": "^7.32.0",
     "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-import": "^2.24.0",
+    "eslint-plugin-prettier": "^3.4.0",
     "jest": "^27.0.6",
+    "prettier": "^2.3.2",
     "rollup": "^2.56.2",
     "rollup-plugin-terser": "^7.0.2",
     "ts-jest": "^27.0.4",
