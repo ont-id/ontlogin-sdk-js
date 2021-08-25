@@ -70,31 +70,39 @@ const response = generateResponse(result)
 
 - generateAuthData(type) - Get auth data json for request challenge.
   #### Params:
+
   | Properties | Description                       | Type                                            | Default         |
-            | ---------- | --------------------------------- | ----------------------------------------------- | --------------- |
+                | ---------- | --------------------------------- | ----------------------------------------------- | --------------- |
   | type       | Optional.Auth types joined by ',' | string: 'IdAuth' \| 'VcAuth' \| 'IdAuth,VcAuth' | 'IdAuth,VcAuth' |
+
   #### Return: AuthData
 
 - requestQr(challenge) - Get qr code data from OntLogin qr server.
   #### Params:
+
   | Properties | Description                                 | Type             | Default |
-            | ---------- | ------------------------------------------- | ---------------- | ------- |
+                | ---------- | ------------------------------------------- | ---------------- | ------- |
   | challenge  | **REQUIRED**.Challenge json given by server | ChallengeMessage |         |
+
   #### Return: Promise\<QrSource\> - {id, text}
 
 - queryQrResult(id, duration) - Query qr result util get user scan result.
   #### Params:
+
   | Properties | Description                           | Type   | Default |
-            | ---------- | ------------------------------------- | ------ | ------- |
+                | ---------- | ------------------------------------- | ------ | ------- |
   | id         | **REQUIRED**.Qr id given by requestQr | string |         |
   | duration   | Optional.Time duration of request     | number | 1000    |
+
   #### Return: Promise\<QrResult\>
 
 - generateResponseData(qrResult) - Get auth response by qr result.
   #### Params:
+
   | Properties | Description                                   | Type   | Default |
-             | ---------- | --------------------------------------------- | ------ | ------- |
+                 | ---------- | --------------------------------------------- | ------ | ------- |
   | qrResult   | **REQUIRED**.Qr result given by queryQrResult | string |         |
+
   #### Return: AuthResponse
 
 *Types*
