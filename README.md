@@ -72,7 +72,7 @@ const response = generateResponse(result)
   #### Params:
 
   | Properties | Description                       | Type                                            | Default         |
-                | ---------- | --------------------------------- | ----------------------------------------------- | --------------- |
+  | ---------- | --------------------------------- | ----------------------------------------------- | --------------- |
   | type       | Optional.Auth types joined by ',' | string: 'IdAuth' \| 'VcAuth' \| 'IdAuth,VcAuth' | 'IdAuth,VcAuth' |
 
   #### Return: AuthData
@@ -81,7 +81,7 @@ const response = generateResponse(result)
   #### Params:
 
   | Properties | Description                                 | Type             | Default |
-                | ---------- | ------------------------------------------- | ---------------- | ------- |
+  | ---------- | ------------------------------------------- | ---------------- | ------- |
   | challenge  | **REQUIRED**.Challenge json given by server | ChallengeMessage |         |
 
   #### Return: Promise\<QrSource\> - {id, text}
@@ -90,7 +90,7 @@ const response = generateResponse(result)
   #### Params:
 
   | Properties | Description                           | Type   | Default |
-                | ---------- | ------------------------------------- | ------ | ------- |
+  | ---------- | ------------------------------------- | ------ | ------- |
   | id         | **REQUIRED**.Qr id given by requestQr | string |         |
   | duration   | Optional.Time duration of request     | number | 1000    |
 
@@ -100,7 +100,7 @@ const response = generateResponse(result)
   #### Params:
 
   | Properties | Description                                   | Type   | Default |
-                 | ---------- | --------------------------------------------- | ------ | ------- |
+  | ---------- | --------------------------------------------- | ------ | ------- |
   | qrResult   | **REQUIRED**.Qr result given by queryQrResult | string |         |
 
   #### Return: AuthResponse
