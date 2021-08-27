@@ -10,6 +10,10 @@ export const postRequest = async <T>(url: string, params: any): Promise<T> => {
   }).then((res) => res.json());
 };
 
+export const getRequest = async <T>(url: string, path: string): Promise<T> => {
+  return fetch(`${url}/${path}`).then((res) => res.json());
+};
+
 export const wait = (time: number): Promise<void> => {
   return new Promise((resolve) => {
     setTimeout(() => {

@@ -1,47 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
+<head>
+    <meta charset="UTF-8"/>
     <title>Title</title>
-  </head>
-  <body>
-    <button id="login">login</button>
-    <script type="module">
-      import {
-        buildSignInMessage,
-        queryQrResult,
-      } from "../../dist/ontlogin.es.js";
+</head>
+<body>
+<button id="login">login</button>
+<script type="module">
+    import {
+        createAuthRequest,
+        requestQR
+    } from "../../dist/ontlogin.es.js";
 
-      async function login() {
-        const message = buildSignInMessage();
-        const challenge = await fetch(
-          "http://192.168.0.189:3000/requestChallenge",
-          {
-            method: "post",
-            headers: {
-              Accept: "application/json",
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify(message),
-          }
-        ).then((res) => res.json());
-        console.log(challenge);
-        if (challenge !== 1) {
-          return;
-        }
-        // 显示qr
-        const proofMessage = queryQrResult();
-        // 关闭qr
-        fetch("xx", {
-          method: "post",
-          body: JSON.stringify(proofMessage),
-        });
-      }
+    async function login() {
+        const qr = await requestQR({
+            nonce: 'asdfa' + Date.now()
+        })
+        console.log(qr)
+    }
 
-      const button = document.querySelector("#login");
-      if (button) {
+    const button = document.querySelector("#login");
+    if (button) {
         button.addEventListener("click", login);
-      }
-    </script>
-  </body>
+    }
+</script>
+</body>
 </html>

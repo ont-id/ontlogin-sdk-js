@@ -29,29 +29,9 @@ const login = async () => {
   console.log(challenge);
   const now = String(Date.now());
   const did = await client.api.identity.getIdentity();
-  // 生成待签名的对象
-  const signData = buildSignData(challenge, did, now);
-  console.log("生成待签名的对象", signData, JSON.stringify(signData));
-  const { data } = await client.api.message.signMessage({
-    message: JSON.stringify(signData),
-    useIdentity: true,
-  });
-  const poofMessage = {
-    ver: "1.0",
-    type: "ClientResponse",
-    did: did,
-    nonce: signData.nonce,
-    proof: {
-      type: challenge.alg[0],
-      verificationMethod: `${did}#key-1`,
-      created: now,
-      value: data,
-    },
-    // VPs: ["", ""],
-  };
-  // 提交签名结果
-  console.log("提交签名结果", poofMessage, JSON.stringify(poofMessage));
-  fetch("https://192.168.0.189:3000/submitChallenge", {
+  // requestQR {text, id}
+  // queryQRResult(id)
+  fetch("http://192.168.0.189:3000/submitChallenge", {
     method: "post",
     headers: {
       Accept: "application/json",

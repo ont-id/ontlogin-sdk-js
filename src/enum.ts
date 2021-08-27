@@ -2,16 +2,17 @@ export enum Version {
   Version1 = "1.0",
 }
 
-export enum Type {
+export enum MessageType {
   ClientHello = "ClientHello",
   ServerHello = "ServerHello",
   ClientResponse = "ClientResponse",
 }
 
+/**
+ * action enums for createAuthRequest
+ */
 export enum Action {
-  SignUp = "0",
-  SignIn = "1",
-  SignInOrSignUp = "2",
+  Authorization = "authorization",
 }
 
 export enum Error {
@@ -22,12 +23,12 @@ export enum Error {
 }
 
 export enum QrStatus {
-  Success,
   Pending,
+  Success,
   Fail,
 }
 
 export enum RequestUrl {
-  getQrText = "",
-  getQrResult = "",
+  getQr = "http://172.168.3.240:31843/qr-code/challenge",
+  getQrResult = "http://172.168.3.240:31843/qr-code/result",
 }

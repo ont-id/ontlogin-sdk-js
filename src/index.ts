@@ -1,95 +1,75 @@
 import {
-  ChallengeMessage,
-  ProofMessage,
+  AuthChallenge,
+  AuthRequest,
+  ChallengeResponse,
   QrResult,
-  SignData,
-  SignInMessage,
-  SignInOrSignUpMessage,
-  SignUpMessage,
 } from "./type";
-import { Action, QrStatus, RequestUrl, Type, Version } from "./enum";
-import { wait, postRequest } from "./utils";
+import { Action, MessageType, QrStatus, RequestUrl, Version } from "./enum";
+import { wait, postRequest, getRequest } from "./utils";
 
-export { wait, postRequest } from "./utils";
-
-/**
- * 构造登录消息体
- */
-export const buildSignInMessage = (name?: string): SignInMessage => ({
-  ver: Version.Version1,
-  type: Type.ClientHello,
-  name,
-  action: Action.SignIn,
-});
+export * from "./type";
+export * from "./enum";
 
 /**
- * 构造注册消息体
+ * Create AuthRequest
+ * @desc Refer to https://ontology-1.gitbook.io/ont-login/tutorials/get-started#send-authentication-request
+ * @param actions - support actions(e.g., ['authorization']), empty by default
+ * @returns AuthRequest
+ * @beta
  */
-export const buildSignUpMessage = (name?: string): SignUpMessage => ({
-  ver: Version.Version1,
-  type: Type.ClientHello,
-  name,
-  action: Action.SignUp,
-});
-
-/**
- * 构造注册登录通用消息体
- */
-export const buildSignInOrSignUpMessage = (
-  name?: string
-): SignInOrSignUpMessage => {
+export const createAuthRequest = (actions: Action[] = []): AuthRequest => {
   return {
     ver: Version.Version1,
-    type: Type.ClientHello,
-    name,
-    action: Action.SignInOrSignUp,
+    type: MessageType.ClientHello,
+    action: actions.includes(Action.Authorization) ? "1" : "0", // todo confirm action
   };
 };
 
 /**
- * 获取二维码数据`
- * @desc 后台基于ChallengeMessage和扫码服务器信息格式化，返回url和扫码id
+ * Get QR with AuthChallenge
+ * @desc Refer to url-to-scan-server-doc
+ * @param challenge - AuthChallenge
+ * @returns QR Text and QR id
+ * @beta
  */
-export const fetchQrText = async (
-  challenge: ChallengeMessage
+export const requestQR = async (
+  challenge: AuthChallenge
 ): Promise<QrResult> => {
-  return postRequest<QrResult>(RequestUrl.getQrText, challenge);
+  const { result, error, desc } = await postRequest(
+    RequestUrl.getQr,
+    challenge
+  );
+  if (error) {
+    throw new Error(desc);
+  }
+  return {
+    id: result.id,
+    text: result.qrCode,
+  };
 };
 
 /**
- * 轮循扫码结果
+ * Query QR result
+ * @desc Fetch QR result until get result or error
+ * @param id - QR id
+ * @param duration - Time duration between each request
+ * @returns ChallengeResponse, refer to doc-url-to-ChallengeResponse
+ * @beta
  */
-export const queryQrResult = async (
+export const queryQRResult = async (
   id: string,
   duration = 1000
-): Promise<ProofMessage> => {
-  const { status, result, error } = await postRequest(RequestUrl.getQrResult, {
-    id,
-  });
-  if (status === QrStatus.Pending) {
+): Promise<ChallengeResponse> => {
+  const { result, error, desc } = await getRequest(RequestUrl.getQrResult, id);
+  if (error) {
+    throw new Error(desc);
+  }
+  if (result.state === QrStatus.Pending) {
     await wait(duration);
-    return queryQrResult(id);
+    return queryQRResult(id);
   }
-  if (status === QrStatus.Success) {
-    return result;
+  if (result.state === QrStatus.Success) {
+    return JSON.parse(result.clientResponse);
   }
-  throw new Error(error);
-};
-
-export const buildSignData = (
-  challenge: ChallengeMessage,
-  did: string,
-  time: string
-): SignData => {
-  return {
-    type: "ClientResponse",
-    server: {
-      name: challenge.server.name,
-      url: challenge.server.url,
-      did: challenge.server.did,
-    },
-    nonce: challenge.nonce,
-    did,
-    created: time,
-  };
+  throw new Error(result.error);
 };
