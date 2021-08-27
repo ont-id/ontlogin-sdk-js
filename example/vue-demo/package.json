@@ -9,6 +9,7 @@
   "dependencies": {
     "@ont-dev/ontology-dapi": "^0.5.7",
     "buffer": "^6.0.3",
+    "ontlogin": "^0.0.1",
     "vue": "^3.0.5"
   },
   "devDependencies": {

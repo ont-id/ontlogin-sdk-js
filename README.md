@@ -8,14 +8,14 @@ OntLogin SDK for JavaScript provides easy integration for your application to On
 
 1. Install and import package.
 
-*via NPM [package](https://npmjs.com/package/ontlogin-js):*
+*via NPM [package](https://npmjs.com/package/ontlogin):*
 
 ```
-npm i ontlogin-js
+npm i ontlogin
 ```
 
 ```js
-import {createAuthRequest} from "ontlogin-js";
+import {createAuthRequest} from "ontlogin";
 ```
 
 *via [js bundle](./dist/ontlogin.min.js):*
@@ -37,7 +37,7 @@ import {createAuthRequest} from "ontlogin.es.js";
 2. Generate auth data and request challenge.
 
 ```js
-import {createAuthRequest} from 'ontlogin-js';
+import {createAuthRequest} from 'ontlogin';
 
 const authRequest = createAuthRequest();
 
@@ -47,7 +47,7 @@ const authRequest = createAuthRequest();
 3. Show QR code and then submit response.
 
 ```js
-import {requestQR, queryQRResult} from 'ontlogin-js';
+import {requestQR, queryQRResult} from 'ontlogin';
 
 // get qr text and id
 const {text, id} = await requestQR(challenge);
@@ -61,3 +61,6 @@ const challengeResponse = await queryQRResult(id);
 
 - [vue](./example/vue-demo)
 - [pure HTML](./example/html-demo)
+
+## npm
+publish by yzy123123

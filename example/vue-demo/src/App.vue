@@ -3,9 +3,9 @@
 </template>
 
 <script setup>
-import { buildSignInMessage, buildSignData } from "../../../dist/ontlogin.es";
-import { client } from "@ont-dev/ontology-dapi";
-import { onMounted } from "@vue/runtime-core";
+import {createAuthRequest, queryQRResult, requestQR} from 'ontlogin'
+import {client} from "@ont-dev/ontology-dapi";
+import {onMounted} from "vue";
 
 onMounted(async () => {
   client.registerClient({
@@ -15,30 +15,28 @@ onMounted(async () => {
 });
 
 const login = async () => {
-  // 生成认证请求对象
-  const signInMessage = buildSignInMessage();
-  // 请求认证挑战
+  const authRequest = createAuthRequest();
   const challenge = await fetch("http://192.168.0.189:3000/requestChallenge", {
     method: "post",
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
     },
-    body: JSON.stringify(signInMessage),
+    body: JSON.stringify(authRequest),
   }).then((res) => res.json());
-  console.log(challenge);
-  const now = String(Date.now());
-  const did = await client.api.identity.getIdentity();
-  // requestQR {text, id}
-  // queryQRResult(id)
-  fetch("http://192.168.0.189:3000/submitChallenge", {
+  console.log('Challenge:', challenge);
+  const {text, id} = await requestQR(challenge)
+  console.log('Show qr:', text)
+  const challengeResponse = await queryQRResult(id)
+  console.log('Scan success:', challengeResponse)
+  const data = await fetch("http://192.168.0.189:3000/submitChallenge", {
     method: "post",
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
     },
-    body: JSON.stringify(poofMessage),
-  });
-  console.log(data);
+    body: JSON.stringify(challengeResponse),
+  }).then((res) => res.json());
+  console.log('final', data)
 };
 </script>
