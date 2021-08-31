@@ -2,7 +2,7 @@
   /**
    * @license
    * author: yuanzeyu@onchain.com
-   * ontlogin.js v0.0.1
+   * ontlogin.js v0.0.2
    * Released under the ISC license.
    */
 
