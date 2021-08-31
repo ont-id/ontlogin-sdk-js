@@ -7,6 +7,7 @@ import {
 import { Action, MessageType, QrStatus, RequestUrl, Version } from "./enum";
 import { wait, postRequest, getRequest } from "./utils";
 
+export { wait, postRequest, getRequest } from "./utils";
 export * from "./type";
 export * from "./enum";
 

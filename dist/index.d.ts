@@ -1,5 +1,6 @@
 import { AuthChallenge, AuthRequest, ChallengeResponse, QrResult } from "./type";
 import { Action } from "./enum";
+export { wait, postRequest, getRequest } from "./utils";
 export * from "./type";
 export * from "./enum";
 /**
