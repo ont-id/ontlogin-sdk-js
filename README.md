@@ -1,4 +1,4 @@
-# ontlogin-js-sdk
+# ontlogin-sdk-js
 
 OntLogin SDK for JavaScript provides easy integration for your application to OntLogin.
 
