@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>AuthRequest | ontlogin</title>
+	<title>SignData | ontlogin</title>
 	<meta name="description" content="Documentation for ontlogin">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -55,10 +55,10 @@
 					<a href="../modules.html">ontlogin</a>
 				</li>
 				<li>
-					<a href="AuthRequest.html">AuthRequest</a>
+					<a href="SignData.html">SignData</a>
 				</li>
 			</ul>
-			<h1>Interface AuthRequest</h1>
+			<h1>Interface SignData</h1>
 		</div>
 	</div>
 </header>
@@ -68,20 +68,15 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>Authentication Request</p>
+						<p>Object for sign.(JSON.stringify before sign)</p>
 					</div>
-					<dl class="tsd-comment-tags">
-						<dt>desc</dt>
-						<dd><p>Refer to <a href="https://ontology-1.gitbook.io/ont-login/tutorials/get-started#send-authentication-request">https://ontology-1.gitbook.io/ont-login/tutorials/get-started#send-authentication-request</a></p>
-						</dd>
-					</dl>
 				</div>
 			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">AuthRequest</span>
+						<span class="target">SignData</span>
 					</li>
 				</ul>
 			</section>
@@ -92,9 +87,11 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="AuthRequest.html#action" class="tsd-kind-icon">action</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="AuthRequest.html#type" class="tsd-kind-icon">type</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="AuthRequest.html#ver" class="tsd-kind-icon">ver</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="SignData.html#created" class="tsd-kind-icon">created</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="SignData.html#did" class="tsd-kind-icon">did</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="SignData.html#nonce" class="tsd-kind-icon">nonce</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="SignData.html#server" class="tsd-kind-icon">server</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="SignData.html#type" class="tsd-kind-icon">type</a></li>
 							</ul>
 						</section>
 					</div>
@@ -103,32 +100,66 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="action" class="tsd-anchor"></a>
-					<h3>action</h3>
-					<div class="tsd-signature tsd-kind-icon">action<span class="tsd-signature-symbol">:</span> <a href="../enums/Action.html" class="tsd-signature-type" data-tsd-kind="Enumeration">Action</a></div>
+					<a name="created" class="tsd-anchor"></a>
+					<h3>created</h3>
+					<div class="tsd-signature tsd-kind-icon">created<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/ontology-tech/ontlogin-js-sdk/blob/fd17572/src/type.ts#L10">type.ts:10</a></li>
+							<li>Defined in <a href="https://github.com/ontology-tech/ontlogin-js-sdk/blob/fd17572/src/type.ts#L86">type.ts:86</a></li>
 						</ul>
 					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="did" class="tsd-anchor"></a>
+					<h3>did</h3>
+					<div class="tsd-signature tsd-kind-icon">did<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/ontology-tech/ontlogin-js-sdk/blob/fd17572/src/type.ts#L85">type.ts:85</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="nonce" class="tsd-anchor"></a>
+					<h3>nonce</h3>
+					<div class="tsd-signature tsd-kind-icon">nonce<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/ontology-tech/ontlogin-js-sdk/blob/fd17572/src/type.ts#L84">type.ts:84</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="server" class="tsd-anchor"></a>
+					<h3>server</h3>
+					<div class="tsd-signature tsd-kind-icon">server<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">{ </span>did<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>name<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>url<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> }</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/ontology-tech/ontlogin-js-sdk/blob/fd17572/src/type.ts#L79">type.ts:79</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-type-declaration">
+						<h4>Type declaration</h4>
+						<ul class="tsd-parameters">
+							<li class="tsd-parameter">
+								<h5><span class="tsd-flag ts-flagOptional">Optional</span> did<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span></h5>
+							</li>
+							<li class="tsd-parameter">
+								<h5>name<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h5>
+							</li>
+							<li class="tsd-parameter">
+								<h5>url<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h5>
+							</li>
+						</ul>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="type" class="tsd-anchor"></a>
 					<h3>type</h3>
-					<div class="tsd-signature tsd-kind-icon">type<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">&quot;ClientHello&quot;</span></div>
+					<div class="tsd-signature tsd-kind-icon">type<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">&quot;ClientResponse&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/ontology-tech/ontlogin-js-sdk/blob/fd17572/src/type.ts#L9">type.ts:9</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="ver" class="tsd-anchor"></a>
-					<h3>ver</h3>
-					<div class="tsd-signature tsd-kind-icon">ver<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">&quot;1.0&quot;</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/ontology-tech/ontlogin-js-sdk/blob/fd17572/src/type.ts#L8">type.ts:8</a></li>
+							<li>Defined in <a href="https://github.com/ontology-tech/ontlogin-js-sdk/blob/fd17572/src/type.ts#L78">type.ts:78</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -165,24 +196,9 @@
 					<li class=" tsd-kind-interface">
 						<a href="AuthChallenge.html" class="tsd-kind-icon">Auth<wbr>Challenge</a>
 					</li>
-				</ul>
-				<ul class="current">
-					<li class="current tsd-kind-interface">
+					<li class=" tsd-kind-interface">
 						<a href="AuthRequest.html" class="tsd-kind-icon">Auth<wbr>Request</a>
-						<ul>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="AuthRequest.html#action" class="tsd-kind-icon">action</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="AuthRequest.html#type" class="tsd-kind-icon">type</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="AuthRequest.html#ver" class="tsd-kind-icon">ver</a>
-							</li>
-						</ul>
 					</li>
-				</ul>
-				<ul class="after-current">
 					<li class=" tsd-kind-interface">
 						<a href="ChallengeResponse.html" class="tsd-kind-icon">Challenge<wbr>Response</a>
 					</li>
@@ -192,9 +208,30 @@
 					<li class=" tsd-kind-interface">
 						<a href="QrResult.html" class="tsd-kind-icon">Qr<wbr>Result</a>
 					</li>
-					<li class=" tsd-kind-interface">
+				</ul>
+				<ul class="current">
+					<li class="current tsd-kind-interface">
 						<a href="SignData.html" class="tsd-kind-icon">Sign<wbr>Data</a>
+						<ul>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="SignData.html#created" class="tsd-kind-icon">created</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="SignData.html#did" class="tsd-kind-icon">did</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="SignData.html#nonce" class="tsd-kind-icon">nonce</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="SignData.html#server" class="tsd-kind-icon">server</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="SignData.html#type" class="tsd-kind-icon">type</a>
+							</li>
+						</ul>
 					</li>
+				</ul>
+				<ul class="after-current">
 					<li class=" tsd-kind-interface">
 						<a href="VCFilter.html" class="tsd-kind-icon">VCFilter</a>
 					</li>

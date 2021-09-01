@@ -12,7 +12,8 @@ export enum MessageType {
  * action enums for createAuthRequest
  */
 export enum Action {
-  Authorization = "authorization",
+  IdAuth = 0,
+  IdAuthAndVcAuth = 1,
 }
 
 export enum Error {

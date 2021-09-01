@@ -89,6 +89,7 @@
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="VCFilter.html#express" class="tsd-kind-icon">express</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="VCFilter.html#required" class="tsd-kind-icon">required</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="VCFilter.html#trustRoot" class="tsd-kind-icon">trust<wbr>Root</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="VCFilter.html#type" class="tsd-kind-icon">type</a></li>
 							</ul>
 						</section>
@@ -100,10 +101,10 @@
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="express" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagOptional">Optional</span> express</h3>
-					<div class="tsd-signature tsd-kind-icon">express<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<div class="tsd-signature tsd-kind-icon">express<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/ontology-tech/ont-login-js-sdk/blob/98947f6/src/type.ts#L19">type.ts:19</a></li>
+							<li>Defined in <a href="https://github.com/ontology-tech/ontlogin-js-sdk/blob/fd17572/src/type.ts#L20">type.ts:20</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -113,7 +114,17 @@
 					<div class="tsd-signature tsd-kind-icon">required<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/ontology-tech/ont-login-js-sdk/blob/98947f6/src/type.ts#L18">type.ts:18</a></li>
+							<li>Defined in <a href="https://github.com/ontology-tech/ontlogin-js-sdk/blob/fd17572/src/type.ts#L19">type.ts:19</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="trustRoot" class="tsd-anchor"></a>
+					<h3>trust<wbr>Root</h3>
+					<div class="tsd-signature tsd-kind-icon">trust<wbr>Root<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/ontology-tech/ontlogin-js-sdk/blob/fd17572/src/type.ts#L18">type.ts:18</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -123,7 +134,7 @@
 					<div class="tsd-signature tsd-kind-icon">type<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/ontology-tech/ont-login-js-sdk/blob/98947f6/src/type.ts#L17">type.ts:17</a></li>
+							<li>Defined in <a href="https://github.com/ontology-tech/ontlogin-js-sdk/blob/fd17572/src/type.ts#L17">type.ts:17</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -172,6 +183,9 @@
 					<li class=" tsd-kind-interface">
 						<a href="QrResult.html" class="tsd-kind-icon">Qr<wbr>Result</a>
 					</li>
+					<li class=" tsd-kind-interface">
+						<a href="SignData.html" class="tsd-kind-icon">Sign<wbr>Data</a>
+					</li>
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-interface">
@@ -184,6 +198,9 @@
 								<a href="VCFilter.html#required" class="tsd-kind-icon">required</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="VCFilter.html#trustRoot" class="tsd-kind-icon">trust<wbr>Root</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
 								<a href="VCFilter.html#type" class="tsd-kind-icon">type</a>
 							</li>
 						</ul>
@@ -194,10 +211,22 @@
 						<a href="../modules.html#createAuthRequest" class="tsd-kind-icon">create<wbr>Auth<wbr>Request</a>
 					</li>
 					<li class=" tsd-kind-function">
+						<a href="../modules.html#createSignData" class="tsd-kind-icon">create<wbr>Sign<wbr>Data</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="../modules.html#getRequest" class="tsd-kind-icon">get<wbr>Request</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="../modules.html#postRequest" class="tsd-kind-icon">post<wbr>Request</a>
+					</li>
+					<li class=" tsd-kind-function">
 						<a href="../modules.html#queryQRResult" class="tsd-kind-icon">queryQRResult</a>
 					</li>
 					<li class=" tsd-kind-function">
 						<a href="../modules.html#requestQR" class="tsd-kind-icon">requestQR</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="../modules.html#wait" class="tsd-kind-icon">wait</a>
 					</li>
 				</ul>
 			</nav>

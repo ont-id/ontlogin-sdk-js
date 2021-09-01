@@ -10,7 +10,8 @@ export declare enum MessageType {
  * action enums for createAuthRequest
  */
 export declare enum Action {
-    Authorization = "authorization"
+    IdAuth = 0,
+    IdAuthAndVcAuth = 1
 }
 export declare enum Error {
     VersionNotSupport = "ERR_WRONG_VERSION",

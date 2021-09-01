@@ -1,4 +1,4 @@
-import { MessageType, Version } from "./enum";
+import { MessageType, Version, Action } from "./enum";
 
 /**
  * Authentication Request
@@ -7,7 +7,7 @@ import { MessageType, Version } from "./enum";
 export interface AuthRequest {
   ver: "1.0";
   type: "ClientHello";
-  action: string;
+  action: Action;
 }
 
 /**
@@ -15,8 +15,9 @@ export interface AuthRequest {
  */
 export interface VCFilter {
   type: string;
+  trustRoot: string[];
   required: boolean;
-  express?: string;
+  express?: string[];
 }
 
 /**
@@ -37,7 +38,6 @@ export interface AuthChallenge {
   chain: string[];
   alg: string[];
   VCFilters: VCFilter[];
-  extension?: Record<string, string | number | boolean>;
 }
 
 /**
@@ -63,7 +63,25 @@ export interface ChallengeResponse {
   VPs: string[];
 }
 
+/**
+ * Qr request result, id: id for query result, text: qr code source text.
+ */
 export interface QrResult {
   id: string;
   text: string;
+}
+
+/**
+ * Object for sign.(JSON.stringify before sign)
+ */
+export interface SignData {
+  type: "ClientResponse";
+  server: {
+    name: string;
+    url: string;
+    did?: string;
+  };
+  nonce: string;
+  did: string;
+  created: number;
 }

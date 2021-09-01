@@ -3,32 +3,32 @@ import {
   AuthRequest,
   ChallengeResponse,
   QrResult,
+  SignData,
 } from "./type";
 import { Action, MessageType, QrStatus, RequestUrl, Version } from "./enum";
 import { wait, postRequest, getRequest } from "./utils";
 
-export { wait, postRequest, getRequest } from "./utils";
 export * from "./type";
 export * from "./enum";
+export { wait, postRequest, getRequest };
 
 /**
  * Create AuthRequest
  * @desc Refer to https://ontology-1.gitbook.io/ont-login/tutorials/get-started#send-authentication-request
- * @param actions - support actions(e.g., ['authorization']), empty by default
+ * @param action - Action 0-IdAuth 1-IdAuth and VcAuth
  * @returns AuthRequest
  * @beta
  */
-export const createAuthRequest = (actions: Action[] = []): AuthRequest => {
+export const createAuthRequest = (action: Action): AuthRequest => {
   return {
     ver: Version.Version1,
     type: MessageType.ClientHello,
-    action: actions.includes(Action.Authorization) ? "1" : "0", // todo confirm action
+    action,
   };
 };
 
 /**
  * Get QR with AuthChallenge
- * @desc Refer to url-to-scan-server-doc
  * @param challenge - AuthChallenge
  * @returns QR Text and QR id
  * @beta
@@ -74,3 +74,23 @@ export const queryQRResult = async (
   }
   throw new Error(result.error);
 };
+
+/**
+ * create signData
+ * @param challenge - AuthChallenge
+ * @param account - signer did
+ */
+export const createSignData = (
+  challenge: AuthChallenge,
+  account: string
+): SignData => ({
+  type: "ClientResponse",
+  server: {
+    name: challenge.server.name,
+    url: challenge.server.url,
+    ...(challenge.server.did ? { did: challenge.server.did } : {}),
+  },
+  nonce: challenge.nonce,
+  did: account,
+  created: Math.floor(Date.now() / 1000),
+});

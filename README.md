@@ -8,7 +8,7 @@ OntLogin SDK for JavaScript provides easy integration for your application to On
 
 1. Install and import package.
 
-*via NPM [package](https://npmjs.com/package/ontlogin):*
+_via NPM [package](https://npmjs.com/package/ontlogin):_
 
 ```
 npm i ontlogin
@@ -18,17 +18,17 @@ npm i ontlogin
 import {createAuthRequest} from "ontlogin";
 ```
 
-*via [js bundle](./dist/ontlogin.min.js):*
+_via [js bundle](./dist/ontlogin.min.js):_
 
 ```html
 
 <script src="ontlogin.min.js"></script>
 <script>
-    ontlogin.createAuthRequest()
+    ontlogin.createAuthRequest();
 </script>
 ```
 
-*via [es module js bundle](./dist/ontlogin.es.js):*
+_via [es module js bundle](./dist/ontlogin.es.js):_
 
 ```js
 import {createAuthRequest} from "ontlogin.es.js";
@@ -37,7 +37,7 @@ import {createAuthRequest} from "ontlogin.es.js";
 2. Generate auth data and request challenge.
 
 ```js
-import {createAuthRequest} from 'ontlogin';
+import {createAuthRequest} from "ontlogin";
 
 const authRequest = createAuthRequest();
 
@@ -47,7 +47,7 @@ const authRequest = createAuthRequest();
 3. Show QR code and then submit response.
 
 ```js
-import {requestQR, queryQRResult} from 'ontlogin';
+import {requestQR, queryQRResult} from "ontlogin";
 
 // get qr text and id
 const {text, id} = await requestQR(challenge);
@@ -63,4 +63,9 @@ const challengeResponse = await queryQRResult(id);
 - [pure HTML](./example/html-demo)
 
 ## npm
+
 publish by yzy123123
+
+## TODO
+
+- [ ] update typescript version
