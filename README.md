@@ -34,7 +34,7 @@ _via [es module js bundle](./dist/ontlogin.es.js):_
 import {createAuthRequest} from "ontlogin.es.js";
 ```
 
-2. Generate auth data and request challenge.
+2. Generate AuthRequest and request challenge.
 
 ```js
 import {createAuthRequest} from "ontlogin";
