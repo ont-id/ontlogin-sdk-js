@@ -6,7 +6,7 @@ import {
   SignData,
 } from "./type";
 import { Action, MessageType, QrStatus, RequestUrl, Version } from "./enum";
-import { wait, postRequest, getRequest } from "./utils";
+import { getRequest, postRequest, wait } from "./utils";
 
 export * from "./type";
 export * from "./enum";
@@ -19,7 +19,9 @@ export { wait, postRequest, getRequest };
  * @returns AuthRequest
  * @beta
  */
-export const createAuthRequest = (action: Action): AuthRequest => {
+export const createAuthRequest = (
+  action: Action = Action.IdAuth
+): AuthRequest => {
   return {
     ver: Version.Version1,
     type: MessageType.ClientHello,
