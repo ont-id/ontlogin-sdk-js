@@ -1,6 +1,6 @@
 import { AuthChallenge, AuthRequest, ChallengeResponse, QrResult, SignData } from "./type";
 import { Action } from "./enum";
-import { wait, postRequest, getRequest } from "./utils";
+import { getRequest, postRequest, wait } from "./utils";
 export * from "./type";
 export * from "./enum";
 export { wait, postRequest, getRequest };
@@ -11,7 +11,7 @@ export { wait, postRequest, getRequest };
  * @returns AuthRequest
  * @beta
  */
-export declare const createAuthRequest: (action: Action) => AuthRequest;
+export declare const createAuthRequest: (action?: Action) => AuthRequest;
 /**
  * Get QR with AuthChallenge
  * @param challenge - AuthChallenge
