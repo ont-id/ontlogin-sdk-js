@@ -1,17 +1,19 @@
 import { MessageType, Version, Action } from "./enum";
 
 /**
- * Authentication Request
- * @desc Refer to https://ontology-1.gitbook.io/ont-login/tutorials/get-started#send-authentication-request
+ * Authentication request,
+ * refer to [Authentication Request](https://docs.ont.io/decentralized-identity-and-data/ontid/ont-login/protocol-specification#authentication-request) of the protocol.
  */
 export interface AuthRequest {
   ver: "1.0";
   type: "ClientHello";
   action: Action;
+  ClientChanllege?: Record<string, string | number | boolean>;
 }
 
 /**
- * vc selector in AuthChallenge
+ * Type of VC required from the server,
+ * refer to VCFilters in [Authentication Challenge](https://docs.ont.io/decentralized-identity-and-data/ontid/ont-login/protocol-specification#authentication-challenge) of the protocol.
  */
 export interface VCFilter {
   type: string;
@@ -21,8 +23,8 @@ export interface VCFilter {
 }
 
 /**
- * authentication challenge
- * @desc Refer to https://ontology-1.gitbook.io/ont-login/tutorials/get-started#generate-authentication-challenge
+ * Authentication challenge,
+ * refer to [Authentication Challenge](https://docs.ont.io/decentralized-identity-and-data/ontid/ont-login/protocol-specification#authentication-challenge) of the protocol.
  */
 export interface AuthChallenge {
   ver: Version;
@@ -41,8 +43,8 @@ export interface AuthChallenge {
 }
 
 /**
- * Proof
- * @des a signed result of Challenge
+ * Signed result of the challenge,
+ * refer to proof in [Authentication Response](https://docs.ont.io/decentralized-identity-and-data/ontid/ont-login/protocol-specification#authentication-response) of the protocol.
  */
 export interface Proof {
   type: string;
@@ -52,27 +54,29 @@ export interface Proof {
 }
 
 /**
- * ChallengeResponse
- * @desc Refer to doc-url-to-ChallengeResponse
+ * Authentication response,
+ * refer to [Authentication Response](https://docs.ont.io/decentralized-identity-and-data/ontid/ont-login/protocol-specification#authentication-response) of the protocol.
  */
-export interface ChallengeResponse {
+export interface AuthResponse {
   ver: Version;
   type: MessageType.ClientResponse;
+  nonce: string;
   did: string;
   proof: Proof;
   VPs: string[];
 }
 
 /**
- * Qr request result, id: id for query result, text: qr code source text.
+ * QR request result, id: id for query result, text: QR code source text.
  */
-export interface QrResult {
+export interface QRResult {
   id: string;
   text: string;
 }
 
 /**
- * Object for sign.(JSON.stringify before sign)
+ * Object for the wallet to sign,
+ * refer to [Signature (and Authorization)](https://docs.ont.io/decentralized-identity-and-data/ontid/ont-login/protocol-specification#signature-and-authorization) of the protocol.
  */
 export interface SignData {
   type: "ClientResponse";

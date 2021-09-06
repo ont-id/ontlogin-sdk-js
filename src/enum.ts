@@ -29,7 +29,11 @@ export enum QrStatus {
   Fail,
 }
 
+/**
+ * Ontlogin QR server urls.
+ * @beta
+ */
 export enum RequestUrl {
-  getQr = "http://172.168.3.240:31843/qr-code/challenge",
-  getQrResult = "http://172.168.3.240:31843/qr-code/result",
+  getQR = "http://172.168.3.240:31843/qr-code/challenge",
+  getQRResult = "http://172.168.3.240:31843/qr-code/result",
 }

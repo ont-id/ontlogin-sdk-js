@@ -1,8 +1,8 @@
 import {
   AuthChallenge,
   AuthRequest,
-  ChallengeResponse,
-  QrResult,
+  AuthResponse,
+  QRResult,
   SignData,
 } from "./type";
 import { Action, MessageType, QrStatus, RequestUrl, Version } from "./enum";
@@ -13,11 +13,13 @@ export * from "./enum";
 export { wait, postRequest, getRequest };
 
 /**
- * Create AuthRequest
- * @desc Refer to https://ontology-1.gitbook.io/ont-login/tutorials/get-started#send-authentication-request
- * @param action - Action 0-IdAuth 1-IdAuth and VcAuth
- * @returns AuthRequest
- * @beta
+ * Create AuthRequest.
+ * @param action - The action type.
+ * @return The AuthRequest for get AuthChallenge.
+ * @example
+ * ```typesript
+ * const authRequest: AuthRequest = createAuthRequest(Action.IdAuthAndVcAuth);
+ * ```
  */
 export const createAuthRequest = (
   action: Action = Action.IdAuth
@@ -30,16 +32,19 @@ export const createAuthRequest = (
 };
 
 /**
- * Get QR with AuthChallenge
- * @param challenge - AuthChallenge
- * @returns QR Text and QR id
- * @beta
+ * Get QR with the AuthChallenge from ontologin QR server.
+ * @param challenge - The AuthChallenge from your server.
+ * @return Text for generating the QR code and id for query scan result.
+ * @example
+ * ```typescript
+ * const { text, id } = await requestQR(challenge);
+ * ```
  */
 export const requestQR = async (
   challenge: AuthChallenge
-): Promise<QrResult> => {
+): Promise<QRResult> => {
   const { result, error, desc } = await postRequest(
-    RequestUrl.getQr,
+    RequestUrl.getQR,
     challenge
   );
   if (error) {
@@ -52,18 +57,16 @@ export const requestQR = async (
 };
 
 /**
- * Query QR result
- * @desc Fetch QR result until get result or error
- * @param id - QR id
- * @param duration - Time duration between each request
- * @returns ChallengeResponse, refer to doc-url-to-ChallengeResponse
- * @beta
+ * Query QR result from ontlogin QR server until get result or error.
+ * @param id - QR id.
+ * @param duration - Time duration(ms) between each request(1000 by default).
+ * @return The AuthResponse for submit to server.
  */
 export const queryQRResult = async (
   id: string,
   duration = 1000
-): Promise<ChallengeResponse> => {
-  const { result, error, desc } = await getRequest(RequestUrl.getQrResult, id);
+): Promise<AuthResponse> => {
+  const { result, error, desc } = await getRequest(RequestUrl.getQRResult, id);
   if (error) {
     throw new Error(desc);
   }
@@ -78,9 +81,9 @@ export const queryQRResult = async (
 };
 
 /**
- * create signData
- * @param challenge - AuthChallenge
- * @param account - signer did
+ * Create the object for the wallet to sign.
+ * @param challenge - The AuthChallenge from server.
+ * @param account - Signer did.
  */
 export const createSignData = (
   challenge: AuthChallenge,
