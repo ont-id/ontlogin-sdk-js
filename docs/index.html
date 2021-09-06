@@ -74,45 +74,48 @@
 				<p><em>via NPM <a href="https://npmjs.com/package/ontlogin">package</a>:</em></p>
 				<pre><code><span style="color: #001080">npm</span><span style="color: #000000"> </span><span style="color: #001080">i</span><span style="color: #000000"> </span><span style="color: #001080">ontlogin</span>
 </code></pre>
-				<pre><code class="language-js"><span style="color: #AF00DB">import</span><span style="color: #000000"> {</span><span style="color: #001080">createAuthRequest</span><span style="color: #000000">} </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;ontlogin&quot;</span><span style="color: #000000">;</span>
+				<pre><code class="language-js"><span style="color: #AF00DB">import</span><span style="color: #000000"> { </span><span style="color: #001080">createAuthRequest</span><span style="color: #000000"> } </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;ontlogin&quot;</span><span style="color: #000000">;</span>
 </code></pre>
-				<p><em>via <a href="./dist/ontlogin.min.js">js bundle</a>:</em></p>
-				<pre><code class="language-html">
-<span style="color: #800000">&lt;script</span><span style="color: #000000FF"> </span><span style="color: #FF0000">src</span><span style="color: #000000FF">=</span><span style="color: #0000FF">&quot;ontlogin.min.js&quot;</span><span style="color: #800000">&gt;&lt;/script&gt;</span>
+				<p><em>via <a href="https://github.com/ontology-tech/ontlogin-sdk-js/blob/main/dist/ontlogin.min.js">js bundle</a>:</em></p>
+				<pre><code class="language-html"><span style="color: #800000">&lt;script</span><span style="color: #000000FF"> </span><span style="color: #FF0000">src</span><span style="color: #000000FF">=</span><span style="color: #0000FF">&quot;ontlogin.min.js&quot;</span><span style="color: #800000">&gt;&lt;/script&gt;</span>
 <span style="color: #800000">&lt;script&gt;</span>
-<span style="color: #000000FF">    </span><span style="color: #001080">ontlogin</span><span style="color: #000000FF">.</span><span style="color: #795E26">createAuthRequest</span><span style="color: #000000FF">();</span>
+<span style="color: #000000FF">  </span><span style="color: #001080">ontlogin</span><span style="color: #000000FF">.</span><span style="color: #795E26">createAuthRequest</span><span style="color: #000000FF">();</span>
 <span style="color: #800000">&lt;/script&gt;</span>
 </code></pre>
-				<p><em>via <a href="./dist/ontlogin.es.js">es module js bundle</a>:</em></p>
-				<pre><code class="language-js"><span style="color: #AF00DB">import</span><span style="color: #000000"> {</span><span style="color: #001080">createAuthRequest</span><span style="color: #000000">} </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;ontlogin.es.js&quot;</span><span style="color: #000000">;</span>
+				<p><em>via <a href="https://github.com/ontology-tech/ontlogin-sdk-js/blob/main/dist/ontlogin.es.js">es module js bundle</a>:</em></p>
+				<pre><code class="language-js"><span style="color: #AF00DB">import</span><span style="color: #000000"> { </span><span style="color: #001080">createAuthRequest</span><span style="color: #000000"> } </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;ontlogin.es.js&quot;</span><span style="color: #000000">;</span>
 </code></pre>
 				<ol start="2">
-					<li>Generate AuthRequest and request challenge.</li>
+					<li>Generate &#39;auth request&#39; and get &#39;challenge&#39; from your server.</li>
 				</ol>
-				<pre><code class="language-js"><span style="color: #AF00DB">import</span><span style="color: #000000"> {</span><span style="color: #001080">createAuthRequest</span><span style="color: #000000">} </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;ontlogin&quot;</span><span style="color: #000000">;</span>
+				<pre><code class="language-js"><span style="color: #AF00DB">import</span><span style="color: #000000"> { </span><span style="color: #001080">createAuthRequest</span><span style="color: #000000"> } </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;ontlogin&quot;</span><span style="color: #000000">;</span>
 
 <span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">authRequest</span><span style="color: #000000"> = </span><span style="color: #795E26">createAuthRequest</span><span style="color: #000000">();</span>
-
-<span style="color: #008000">// get challenge from your server with authRequest</span>
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">challenge</span><span style="color: #000000"> = </span><span style="color: #AF00DB">await</span><span style="color: #000000"> </span><span style="color: #795E26">fetch</span><span style="color: #000000">(</span><span style="color: #A31515">&quot;server-url&quot;</span><span style="color: #000000">, { </span><span style="color: #001080">body:</span><span style="color: #000000"> </span><span style="color: #001080">authRequest</span><span style="color: #000000"> });</span>
 </code></pre>
 				<ol start="3">
-					<li>Show QR code and then submit response.</li>
+					<li>Get QR code from ontlogin QR server.</li>
 				</ol>
-				<pre><code class="language-js"><span style="color: #AF00DB">import</span><span style="color: #000000"> {</span><span style="color: #001080">requestQR</span><span style="color: #000000">, </span><span style="color: #001080">queryQRResult</span><span style="color: #000000">} </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;ontlogin&quot;</span><span style="color: #000000">;</span>
+				<pre><code class="language-js"><span style="color: #AF00DB">import</span><span style="color: #000000"> { </span><span style="color: #001080">requestQR</span><span style="color: #000000"> } </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;ontlogin&quot;</span><span style="color: #000000">;</span>
 
-<span style="color: #008000">// get qr text and id</span>
-<span style="color: #0000FF">const</span><span style="color: #000000"> {</span><span style="color: #0070C1">text</span><span style="color: #000000">, </span><span style="color: #0070C1">id</span><span style="color: #000000">} = </span><span style="color: #AF00DB">await</span><span style="color: #000000"> </span><span style="color: #795E26">requestQR</span><span style="color: #000000">(</span><span style="color: #001080">challenge</span><span style="color: #000000">);</span>
-<span style="color: #008000">// show qr code</span>
-<span style="color: #008000">// query scan response</span>
-<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">challengeResponse</span><span style="color: #000000"> = </span><span style="color: #AF00DB">await</span><span style="color: #000000"> </span><span style="color: #795E26">queryQRResult</span><span style="color: #000000">(</span><span style="color: #001080">id</span><span style="color: #000000">);</span>
-<span style="color: #008000">// submit challengeResponse to your server</span>
+<span style="color: #0000FF">const</span><span style="color: #000000"> { </span><span style="color: #0070C1">text</span><span style="color: #000000">, </span><span style="color: #0070C1">id</span><span style="color: #000000"> } = </span><span style="color: #AF00DB">await</span><span style="color: #000000"> </span><span style="color: #795E26">requestQR</span><span style="color: #000000">(</span><span style="color: #001080">challenge</span><span style="color: #000000">);</span>
+</code></pre>
+				<ol start="4">
+					<li>Show QR code ui and query scan result from ontlogin QR server.</li>
+				</ol>
+				<pre><code class="language-js"><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">challengeResponse</span><span style="color: #000000"> = </span><span style="color: #AF00DB">await</span><span style="color: #000000"> </span><span style="color: #795E26">queryQRResult</span><span style="color: #000000">(</span><span style="color: #001080">id</span><span style="color: #000000">);</span>
+</code></pre>
+				<ol start="5">
+					<li>Submit &#39;challenge response&#39; to your server.</li>
+				</ol>
+				<pre><code class="language-js"><span style="color: #795E26">fetch</span><span style="color: #000000">(</span><span style="color: #A31515">&quot;server-url&quot;</span><span style="color: #000000">, { </span><span style="color: #001080">body:</span><span style="color: #000000"> </span><span style="color: #001080">challengeResponse</span><span style="color: #000000"> });</span>
 </code></pre>
 				<a href="#example-apps" id="example-apps" style="color: inherit; text-decoration: none;">
 					<h2>Example apps</h2>
 				</a>
 				<ul>
-					<li><a href="./example/vue-demo">vue</a></li>
-					<li><a href="./example/html-demo">pure HTML</a></li>
+					<li><a href="https://github.com/ontology-tech/ontlogin-sdk-js/tree/main/example/vue-demo">vue</a></li>
+					<li><a href="https://github.com/ontology-tech/ontlogin-sdk-js/tree/main/example/html-demo">pure HTML</a></li>
 				</ul>
 				<a href="#npm" id="npm" style="color: inherit; text-decoration: none;">
 					<h2>npm</h2>
