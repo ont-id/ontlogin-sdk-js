@@ -15,52 +15,57 @@ npm i ontlogin
 ```
 
 ```js
-import {createAuthRequest} from "ontlogin";
+import { createAuthRequest } from "ontlogin";
 ```
 
-_via [js bundle](./dist/ontlogin.min.js):_
+_via [js bundle](https://github.com/ontology-tech/ontlogin-sdk-js/blob/main/dist/ontlogin.min.js):_
 
 ```html
-
 <script src="ontlogin.min.js"></script>
 <script>
-    ontlogin.createAuthRequest();
+  ontlogin.createAuthRequest();
 </script>
 ```
 
-_via [es module js bundle](./dist/ontlogin.es.js):_
+_via [es module js bundle](https://github.com/ontology-tech/ontlogin-sdk-js/blob/main/dist/ontlogin.es.js):_
 
 ```js
-import {createAuthRequest} from "ontlogin.es.js";
+import { createAuthRequest } from "ontlogin.es.js";
 ```
 
-2. Generate AuthRequest and request challenge.
+2. Generate 'auth request' and get 'challenge' from your server.
 
 ```js
-import {createAuthRequest} from "ontlogin";
+import { createAuthRequest } from "ontlogin";
 
 const authRequest = createAuthRequest();
-
-// get challenge from your server with authRequest
+const challenge = await fetch("server-url", { body: authRequest });
 ```
 
-3. Show QR code and then submit response.
+3. Get QR code from ontlogin QR server.
 
 ```js
-import {requestQR, queryQRResult} from "ontlogin";
+import { requestQR } from "ontlogin";
 
-// get qr text and id
-const {text, id} = await requestQR(challenge);
-// show qr code
-// query scan response
+const { text, id } = await requestQR(challenge);
+```
+
+4. Show QR code ui and query scan result from ontlogin QR server.
+
+```js
 const challengeResponse = await queryQRResult(id);
-// submit challengeResponse to your server
+```
+
+5. Submit 'challenge response' to your server.
+
+```js
+fetch("server-url", { body: challengeResponse });
 ```
 
 ## Example apps
 
-- [vue](./example/vue-demo)
-- [pure HTML](./example/html-demo)
+- [vue](https://github.com/ontology-tech/ontlogin-sdk-js/tree/main/example/vue-demo)
+- [pure HTML](https://github.com/ontology-tech/ontlogin-sdk-js/tree/main/example/html-demo)
 
 ## npm
 
