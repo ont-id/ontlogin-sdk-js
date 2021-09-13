@@ -1,227 +1,61 @@
-<!doctype html>
-<html class="default no-js">
-<head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>ontlogin</title>
-	<meta name="description" content="Documentation for ontlogin">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="assets/css/main.css">
-	<script async src="assets/js/search.js" id="search-script"></script>
-</head>
-<body>
-<header>
-	<div class="tsd-page-toolbar">
-		<div class="container">
-			<div class="table-wrap">
-				<div class="table-cell" id="tsd-search" data-index="assets/js/search.json" data-base=".">
-					<div class="field">
-						<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
-						<input id="tsd-search-field" type="text" />
-					</div>
-					<ul class="results">
-						<li class="state loading">Preparing search index...</li>
-						<li class="state failure">The search index is not available</li>
-					</ul>
-					<a href="index.html" class="title">ontlogin</a>
-				</div>
-				<div class="table-cell" id="tsd-widgets">
-					<div id="tsd-filter">
-						<a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a>
-						<div class="tsd-filter-group">
-							<div class="tsd-select" id="tsd-filter-visibility">
-								<span class="tsd-select-label">All</span>
-								<ul class="tsd-select-list">
-									<li data-value="public">Public</li>
-									<li data-value="protected">Public/Protected</li>
-									<li data-value="private" class="selected">All</li>
-								</ul>
-							</div>
-							<input type="checkbox" id="tsd-filter-inherited" checked />
-							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
-							<input type="checkbox" id="tsd-filter-externals" checked />
-							<label class="tsd-widget" for="tsd-filter-externals">Externals</label>
-						</div>
-					</div>
-					<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
-				</div>
-			</div>
-		</div>
-	</div>
-	<div class="tsd-page-title">
-		<div class="container">
-			<h1>ontlogin</h1>
-		</div>
-	</div>
-</header>
-<div class="container container-main">
-	<div class="row">
-		<div class="col-8 col-content">
-			<div class="tsd-panel tsd-typography">
-				<a href="#ontlogin-sdk-js" id="ontlogin-sdk-js" style="color: inherit; text-decoration: none;">
-					<h1>ontlogin-sdk-js</h1>
-				</a>
-				<p>OntLogin SDK for JavaScript provides easy integration for your application to OntLogin.</p>
-				<a href="#documentation" id="documentation" style="color: inherit; text-decoration: none;">
-					<h2>Documentation</h2>
-				</a>
-				<p>Visit <a href="https://docs.ont.io/decentralized-identity-and-data/ontid/ont-login/front-end-javascript-sdk">docs.ont.io</a></p>
-				<a href="#getting-started" id="getting-started" style="color: inherit; text-decoration: none;">
-					<h2>Getting Started</h2>
-				</a>
-				<a href="#es-module" id="es-module" style="color: inherit; text-decoration: none;">
-					<h3>ES Module</h3>
-				</a>
-				<ol>
-					<li>Install and import package.</li>
-				</ol>
-				<p><em>via NPM <a href="https://npmjs.com/package/ontlogin">package</a>:</em></p>
-				<pre><code><span style="color: #001080">npm</span><span style="color: #000000"> </span><span style="color: #001080">i</span><span style="color: #000000"> </span><span style="color: #001080">ontlogin</span>
-</code></pre>
-				<pre><code class="language-js"><span style="color: #AF00DB">import</span><span style="color: #000000"> { </span><span style="color: #001080">createAuthRequest</span><span style="color: #000000"> } </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;ontlogin&quot;</span><span style="color: #000000">;</span>
-</code></pre>
-				<p><em>via <a href="https://github.com/ontology-tech/ontlogin-sdk-js/blob/main/dist/ontlogin.min.js">js bundle</a>:</em></p>
-				<pre><code class="language-html"><span style="color: #800000">&lt;script</span><span style="color: #000000FF"> </span><span style="color: #FF0000">src</span><span style="color: #000000FF">=</span><span style="color: #0000FF">&quot;ontlogin.min.js&quot;</span><span style="color: #800000">&gt;&lt;/script&gt;</span>
-<span style="color: #800000">&lt;script&gt;</span>
-<span style="color: #000000FF">  </span><span style="color: #001080">ontlogin</span><span style="color: #000000FF">.</span><span style="color: #795E26">createAuthRequest</span><span style="color: #000000FF">();</span>
-<span style="color: #800000">&lt;/script&gt;</span>
-</code></pre>
-				<p><em>via <a href="https://github.com/ontology-tech/ontlogin-sdk-js/blob/main/dist/ontlogin.es.js">es module js bundle</a>:</em></p>
-				<pre><code class="language-js"><span style="color: #AF00DB">import</span><span style="color: #000000"> { </span><span style="color: #001080">createAuthRequest</span><span style="color: #000000"> } </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;ontlogin.es.js&quot;</span><span style="color: #000000">;</span>
-</code></pre>
-				<ol start="2">
-					<li>Generate &#39;auth request&#39; and get &#39;challenge&#39; from your server.</li>
-				</ol>
-				<pre><code class="language-js"><span style="color: #AF00DB">import</span><span style="color: #000000"> { </span><span style="color: #001080">createAuthRequest</span><span style="color: #000000"> } </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;ontlogin&quot;</span><span style="color: #000000">;</span>
+<!DOCTYPE html><html class="default no-js"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>ontlogin</title><meta name="description" content="Documentation for ontlogin"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="stylesheet" href="assets/style.css"/><link rel="stylesheet" href="assets/highlight.css"/><script async src="assets/search.js" id="search-script"></script></head><body><header><div class="tsd-page-toolbar"><div class="container"><div class="table-wrap"><div class="table-cell" id="tsd-search" data-base="."><div class="field"><label for="tsd-search-field" class="tsd-widget search no-caption">Search</label><input type="text" id="tsd-search-field"/></div><ul class="results"><li class="state loading">Preparing search index...</li><li class="state failure">The search index is not available</li></ul><a href="index.html" class="title">ontlogin</a></div><div class="table-cell" id="tsd-widgets"><div id="tsd-filter"><a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a><div class="tsd-filter-group"><div class="tsd-select" id="tsd-filter-visibility"><span class="tsd-select-label">All</span><ul class="tsd-select-list"><li data-value="public">Public</li><li data-value="protected">Public/Protected</li><li data-value="private" class="selected">All</li></ul></div> <input type="checkbox" id="tsd-filter-inherited" checked/><label class="tsd-widget" for="tsd-filter-inherited">Inherited</label><input type="checkbox" id="tsd-filter-externals" checked/><label class="tsd-widget" for="tsd-filter-externals">Externals</label></div></div><a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a></div></div></div></div><div class="tsd-page-title"><div class="container"><h1>ontlogin</h1></div></div></header><div class="container container-main"><div class="row"><div class="col-8 col-content"><div class="tsd-panel tsd-typography">
+<a href="#ontlogin-sdk-js" id="ontlogin-sdk-js" style="color: inherit; text-decoration: none;">
+  <h1>ontlogin-sdk-js</h1>
+</a>
+<p>OntLogin SDK for JavaScript provides easy integration for your application to OntLogin.</p>
 
-<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">authRequest</span><span style="color: #000000"> = </span><span style="color: #795E26">createAuthRequest</span><span style="color: #000000">();</span>
-<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">challenge</span><span style="color: #000000"> = </span><span style="color: #AF00DB">await</span><span style="color: #000000"> </span><span style="color: #795E26">fetch</span><span style="color: #000000">(</span><span style="color: #A31515">&quot;server-url&quot;</span><span style="color: #000000">, { </span><span style="color: #001080">body:</span><span style="color: #000000"> </span><span style="color: #001080">authRequest</span><span style="color: #000000"> });</span>
-</code></pre>
-				<ol start="3">
-					<li>Get QR code from ontlogin QR server.</li>
-				</ol>
-				<pre><code class="language-js"><span style="color: #AF00DB">import</span><span style="color: #000000"> { </span><span style="color: #001080">requestQR</span><span style="color: #000000"> } </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;ontlogin&quot;</span><span style="color: #000000">;</span>
+<a href="#documentation" id="documentation" style="color: inherit; text-decoration: none;">
+  <h2>Documentation</h2>
+</a>
+<p>Visit <a href="https://docs.ont.io/decentralized-identity-and-data/ontid/ont-login/front-end-javascript-sdk">docs.ont.io</a></p>
 
-<span style="color: #0000FF">const</span><span style="color: #000000"> { </span><span style="color: #0070C1">text</span><span style="color: #000000">, </span><span style="color: #0070C1">id</span><span style="color: #000000"> } = </span><span style="color: #AF00DB">await</span><span style="color: #000000"> </span><span style="color: #795E26">requestQR</span><span style="color: #000000">(</span><span style="color: #001080">challenge</span><span style="color: #000000">);</span>
+<a href="#getting-started" id="getting-started" style="color: inherit; text-decoration: none;">
+  <h2>Getting Started</h2>
+</a>
+
+<a href="#es-module" id="es-module" style="color: inherit; text-decoration: none;">
+  <h3>ES Module</h3>
+</a>
+<ol>
+<li>Install and import package.</li>
+</ol>
+<p><em>via NPM <a href="https://npmjs.com/package/ontlogin">package</a>:</em></p>
+<pre><code><span class="hl-5">npm</span><span class="hl-1"> </span><span class="hl-5">i</span><span class="hl-1"> </span><span class="hl-5">ontlogin</span>
 </code></pre>
-				<ol start="4">
-					<li>Show QR code ui and query scan result from ontlogin QR server.</li>
-				</ol>
-				<pre><code class="language-js"><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">challengeResponse</span><span style="color: #000000"> = </span><span style="color: #AF00DB">await</span><span style="color: #000000"> </span><span style="color: #795E26">queryQRResult</span><span style="color: #000000">(</span><span style="color: #001080">id</span><span style="color: #000000">);</span>
+<pre><code class="language-js"><span class="hl-6">import</span><span class="hl-1"> { </span><span class="hl-5">createAuthRequest</span><span class="hl-1"> } </span><span class="hl-6">from</span><span class="hl-1"> </span><span class="hl-7">&quot;ontlogin&quot;</span><span class="hl-1">;</span>
 </code></pre>
-				<ol start="5">
-					<li>Submit &#39;challenge response&#39; to your server.</li>
-				</ol>
-				<pre><code class="language-js"><span style="color: #795E26">fetch</span><span style="color: #000000">(</span><span style="color: #A31515">&quot;server-url&quot;</span><span style="color: #000000">, { </span><span style="color: #001080">body:</span><span style="color: #000000"> </span><span style="color: #001080">challengeResponse</span><span style="color: #000000"> });</span>
+<p><em>via <a href="https://github.com/ontology-tech/ontlogin-sdk-js/blob/main/dist/ontlogin.min.js">js bundle</a>:</em></p>
+<pre><code class="language-html"><span class="hl-8">&lt;</span><span class="hl-9">script</span><span class="hl-10"> </span><span class="hl-11">src</span><span class="hl-10">=</span><span class="hl-12">&quot;ontlogin.min.js&quot;</span><span class="hl-8">&gt;&lt;/</span><span class="hl-9">script</span><span class="hl-8">&gt;</span><br/><span class="hl-8">&lt;</span><span class="hl-9">script</span><span class="hl-8">&gt;</span><br/><span class="hl-10">  </span><span class="hl-5">ontlogin</span><span class="hl-10">.</span><span class="hl-4">createAuthRequest</span><span class="hl-10">();</span><br/><span class="hl-8">&lt;/</span><span class="hl-9">script</span><span class="hl-8">&gt;</span>
 </code></pre>
-				<a href="#example-apps" id="example-apps" style="color: inherit; text-decoration: none;">
-					<h2>Example apps</h2>
-				</a>
-				<ul>
-					<li><a href="https://github.com/ontology-tech/ontlogin-sdk-js/tree/main/example/vue-demo">vue</a></li>
-					<li><a href="https://github.com/ontology-tech/ontlogin-sdk-js/tree/main/example/html-demo">pure HTML</a></li>
-				</ul>
-				<a href="#npm" id="npm" style="color: inherit; text-decoration: none;">
-					<h2>npm</h2>
-				</a>
-				<p>publish by yzy123123</p>
-				<a href="#todo" id="todo" style="color: inherit; text-decoration: none;">
-					<h2>TODO</h2>
-				</a>
-				<ul>
-					<li><input disabled="" type="checkbox"> update typescript version</li>
-				</ul>
-			</div>
-		</div>
-		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
-			<nav class="tsd-navigation primary">
-				<ul>
-					<li class=" ">
-						<a href="modules.html">Exports</a>
-					</li>
-				</ul>
-			</nav>
-			<nav class="tsd-navigation secondary menu-sticky">
-				<ul class="before-current">
-					<li class=" tsd-kind-enum">
-						<a href="enums/Action.html" class="tsd-kind-icon">Action</a>
-					</li>
-					<li class=" tsd-kind-enum">
-						<a href="enums/Error.html" class="tsd-kind-icon">Error</a>
-					</li>
-					<li class=" tsd-kind-enum">
-						<a href="enums/MessageType.html" class="tsd-kind-icon">Message<wbr>Type</a>
-					</li>
-					<li class=" tsd-kind-enum">
-						<a href="enums/QrStatus.html" class="tsd-kind-icon">Qr<wbr>Status</a>
-					</li>
-					<li class=" tsd-kind-enum">
-						<a href="enums/RequestUrl.html" class="tsd-kind-icon">Request<wbr>Url</a>
-					</li>
-					<li class=" tsd-kind-enum">
-						<a href="enums/Version.html" class="tsd-kind-icon">Version</a>
-					</li>
-					<li class=" tsd-kind-interface">
-						<a href="interfaces/AuthChallenge.html" class="tsd-kind-icon">Auth<wbr>Challenge</a>
-					</li>
-					<li class=" tsd-kind-interface">
-						<a href="interfaces/AuthRequest.html" class="tsd-kind-icon">Auth<wbr>Request</a>
-					</li>
-					<li class=" tsd-kind-interface">
-						<a href="interfaces/AuthResponse.html" class="tsd-kind-icon">Auth<wbr>Response</a>
-					</li>
-					<li class=" tsd-kind-interface">
-						<a href="interfaces/Proof.html" class="tsd-kind-icon">Proof</a>
-					</li>
-					<li class=" tsd-kind-interface">
-						<a href="interfaces/QRResult.html" class="tsd-kind-icon">QRResult</a>
-					</li>
-					<li class=" tsd-kind-interface">
-						<a href="interfaces/SignData.html" class="tsd-kind-icon">Sign<wbr>Data</a>
-					</li>
-					<li class=" tsd-kind-interface">
-						<a href="interfaces/VCFilter.html" class="tsd-kind-icon">VCFilter</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="modules.html#createAuthRequest" class="tsd-kind-icon">create<wbr>Auth<wbr>Request</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="modules.html#createSignData" class="tsd-kind-icon">create<wbr>Sign<wbr>Data</a>
-					</li>
-					<li class=" tsd-kind-function tsd-has-type-parameter">
-						<a href="modules.html#getRequest" class="tsd-kind-icon">get<wbr>Request</a>
-					</li>
-					<li class=" tsd-kind-function tsd-has-type-parameter">
-						<a href="modules.html#postRequest" class="tsd-kind-icon">post<wbr>Request</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="modules.html#queryQRResult" class="tsd-kind-icon">queryQRResult</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="modules.html#requestQR" class="tsd-kind-icon">requestQR</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="modules.html#wait" class="tsd-kind-icon">wait</a>
-					</li>
-				</ul>
-			</nav>
-		</div>
-	</div>
-</div>
-<footer class="with-border-bottom">
-	<div class="container">
-		<h2>Legend</h2>
-		<div class="tsd-legend-group">
-			<ul class="tsd-legend">
-				<li class="tsd-kind-property tsd-parent-kind-interface"><span class="tsd-kind-icon">Property</span></li>
-			</ul>
-		</div>
-	</div>
-</footer>
-<div class="container tsd-generator">
-	<p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p>
-</div>
-<div class="overlay"></div>
-<script src="assets/js/main.js"></script>
-</body>
-</html>
+<p><em>via <a href="https://github.com/ontology-tech/ontlogin-sdk-js/blob/main/dist/ontlogin.es.js">es module js bundle</a>:</em></p>
+<pre><code class="language-js"><span class="hl-6">import</span><span class="hl-1"> { </span><span class="hl-5">createAuthRequest</span><span class="hl-1"> } </span><span class="hl-6">from</span><span class="hl-1"> </span><span class="hl-7">&quot;ontlogin.es.js&quot;</span><span class="hl-1">;</span>
+</code></pre>
+<ol start="2">
+<li>Generate &#39;auth request&#39; and get &#39;challenge&#39; from your server.</li>
+</ol>
+<pre><code class="language-js"><span class="hl-6">import</span><span class="hl-1"> { </span><span class="hl-5">createAuthRequest</span><span class="hl-1"> } </span><span class="hl-6">from</span><span class="hl-1"> </span><span class="hl-7">&quot;ontlogin&quot;</span><span class="hl-1">;</span><br/><br/><span class="hl-0">const</span><span class="hl-1"> </span><span class="hl-2">authRequest</span><span class="hl-1"> = </span><span class="hl-4">createAuthRequest</span><span class="hl-1">();</span><br/><span class="hl-0">const</span><span class="hl-1"> </span><span class="hl-2">challenge</span><span class="hl-1"> = </span><span class="hl-6">await</span><span class="hl-1"> </span><span class="hl-4">fetch</span><span class="hl-1">(</span><span class="hl-7">&quot;server-url&quot;</span><span class="hl-1">, { </span><span class="hl-5">body:</span><span class="hl-1"> </span><span class="hl-5">authRequest</span><span class="hl-1"> });</span>
+</code></pre>
+<ol start="3">
+<li>Get QR code from ontlogin QR server.</li>
+</ol>
+<pre><code class="language-js"><span class="hl-6">import</span><span class="hl-1"> { </span><span class="hl-5">requestQR</span><span class="hl-1"> } </span><span class="hl-6">from</span><span class="hl-1"> </span><span class="hl-7">&quot;ontlogin&quot;</span><span class="hl-1">;</span><br/><br/><span class="hl-0">const</span><span class="hl-1"> { </span><span class="hl-2">text</span><span class="hl-1">, </span><span class="hl-2">id</span><span class="hl-1"> } = </span><span class="hl-6">await</span><span class="hl-1"> </span><span class="hl-4">requestQR</span><span class="hl-1">(</span><span class="hl-5">challenge</span><span class="hl-1">);</span>
+</code></pre>
+<ol start="4">
+<li>Show QR code ui and query scan result from ontlogin QR server.</li>
+</ol>
+<pre><code class="language-js"><span class="hl-0">const</span><span class="hl-1"> </span><span class="hl-2">challengeResponse</span><span class="hl-1"> = </span><span class="hl-6">await</span><span class="hl-1"> </span><span class="hl-4">queryQRResult</span><span class="hl-1">(</span><span class="hl-5">id</span><span class="hl-1">);</span>
+</code></pre>
+<ol start="5">
+<li>Submit &#39;challenge response&#39; to your server.</li>
+</ol>
+<pre><code class="language-js"><span class="hl-4">fetch</span><span class="hl-1">(</span><span class="hl-7">&quot;server-url&quot;</span><span class="hl-1">, { </span><span class="hl-5">body:</span><span class="hl-1"> </span><span class="hl-5">challengeResponse</span><span class="hl-1"> });</span>
+</code></pre>
+
+<a href="#example-apps" id="example-apps" style="color: inherit; text-decoration: none;">
+  <h2>Example apps</h2>
+</a>
+<ul>
+<li><a href="https://github.com/ontology-tech/ontlogin-sdk-js/tree/main/example/vue-demo">vue</a></li>
+<li><a href="https://github.com/ontology-tech/ontlogin-sdk-js/tree/main/example/html-demo">pure HTML</a></li>
+</ul>
+</div></div><div class="col-4 col-menu menu-sticky-wrap menu-highlight"><nav class="tsd-navigation primary"><ul><li class="current"><a href="modules.html">Exports</a></li></ul></nav><nav class="tsd-navigation secondary menu-sticky"><ul><li class="tsd-kind-enum"><a href="enums/Action.html" class="tsd-kind-icon">Action</a></li><li class="tsd-kind-enum"><a href="enums/Error.html" class="tsd-kind-icon">Error</a></li><li class="tsd-kind-enum"><a href="enums/MessageType.html" class="tsd-kind-icon">Message<wbr/>Type</a></li><li class="tsd-kind-enum"><a href="enums/QrStatus.html" class="tsd-kind-icon">Qr<wbr/>Status</a></li><li class="tsd-kind-enum"><a href="enums/RequestUrl.html" class="tsd-kind-icon">Request<wbr/>Url</a></li><li class="tsd-kind-enum"><a href="enums/Version.html" class="tsd-kind-icon">Version</a></li><li class="tsd-kind-interface"><a href="interfaces/AuthChallenge.html" class="tsd-kind-icon">Auth<wbr/>Challenge</a></li><li class="tsd-kind-interface"><a href="interfaces/AuthRequest.html" class="tsd-kind-icon">Auth<wbr/>Request</a></li><li class="tsd-kind-interface"><a href="interfaces/AuthResponse.html" class="tsd-kind-icon">Auth<wbr/>Response</a></li><li class="tsd-kind-interface"><a href="interfaces/Proof.html" class="tsd-kind-icon">Proof</a></li><li class="tsd-kind-interface"><a href="interfaces/QRResult.html" class="tsd-kind-icon">QRResult</a></li><li class="tsd-kind-interface"><a href="interfaces/SignData.html" class="tsd-kind-icon">Sign<wbr/>Data</a></li><li class="tsd-kind-interface"><a href="interfaces/VCFilter.html" class="tsd-kind-icon">VCFilter</a></li><li class="tsd-kind-function"><a href="modules.html#createAuthRequest" class="tsd-kind-icon">create<wbr/>Auth<wbr/>Request</a></li><li class="tsd-kind-function"><a href="modules.html#createSignData" class="tsd-kind-icon">create<wbr/>Sign<wbr/>Data</a></li><li class="tsd-kind-function tsd-has-type-parameter"><a href="modules.html#getRequest" class="tsd-kind-icon">get<wbr/>Request</a></li><li class="tsd-kind-function tsd-has-type-parameter"><a href="modules.html#postRequest" class="tsd-kind-icon">post<wbr/>Request</a></li><li class="tsd-kind-function"><a href="modules.html#queryQRResult" class="tsd-kind-icon">queryQRResult</a></li><li class="tsd-kind-function"><a href="modules.html#requestQR" class="tsd-kind-icon">requestQR</a></li><li class="tsd-kind-function"><a href="modules.html#wait" class="tsd-kind-icon">wait</a></li></ul></nav></div></div></div><footer class="with-border-bottom"><div class="container"><h2>Legend</h2><div class="tsd-legend-group"><ul class="tsd-legend"><li class="tsd-kind-property tsd-parent-kind-interface"><span class="tsd-kind-icon">Property</span></li></ul></div><h2>Settings</h2><p>Theme <select id="theme"><option value="os">OS</option><option value="light">Light</option><option value="dark">Dark</option></select></p></div></footer><div class="container tsd-generator"><p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p></div><div class="overlay"></div><script src="assets/main.js"></script></body></html>

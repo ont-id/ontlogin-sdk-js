@@ -4,6 +4,7 @@ import pluginCommonjs from "@rollup/plugin-commonjs";
 import pluginNodeResolve from "@rollup/plugin-node-resolve";
 import { babel } from "@rollup/plugin-babel";
 import * as path from "path";
+import dts from "rollup-plugin-dts";
 import pkg from "./package.json";
 
 const moduleName = pkg.name.replace(/^@.*\//, "");
@@ -123,5 +124,11 @@ export default [
         browser: false,
       }),
     ],
+  },
+
+  {
+    input: "dist/index.d.ts",
+    output: [{ file: "dist/ontlogin.d.ts", format: "es" }],
+    plugins: [dts()],
   },
 ];
