@@ -8,7 +8,7 @@ export interface AuthRequest {
   ver: "1.0";
   type: "ClientHello";
   action: Action;
-  ClientChanllege?: Record<string, string | number | boolean>;
+  ClientChallenge?: Record<string, string | number | boolean>;
 }
 
 /**

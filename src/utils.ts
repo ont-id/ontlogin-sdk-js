@@ -2,7 +2,7 @@
  * Post request in json, a simple wrapper of fetch.
  * @typeParam T Response type.
  * @param url Request url.
- * @param params Request body.
+ * @param body Request body.
  * @return Promise response.
  */
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types, @typescript-eslint/no-explicit-any

@@ -17,7 +17,7 @@ export { wait, postRequest, getRequest };
  * @param action - The action type.
  * @return The AuthRequest for get AuthChallenge.
  * @example
- * ```typesript
+ * ```typescript
  * const authRequest: AuthRequest = createAuthRequest(Action.IdAuthAndVcAuth);
  * ```
  */

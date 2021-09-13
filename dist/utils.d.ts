@@ -2,7 +2,7 @@
  * Post request in json, a simple wrapper of fetch.
  * @typeParam T Response type.
  * @param url Request url.
- * @param params Request body.
+ * @param body Request body.
  * @return Promise response.
  */
 export declare const postRequest: <T>(url: string, body: any) => Promise<T>;

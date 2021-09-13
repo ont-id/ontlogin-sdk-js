@@ -1,6 +1,6 @@
 {
   "name": "ontlogin",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "ONT LOGIN JS SDK",
   "main": "dist/ontlogin.cjs.js",
   "module": "dist/ontlogin.es.js",
