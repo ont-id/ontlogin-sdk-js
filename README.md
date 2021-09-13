@@ -2,6 +2,10 @@
 
 OntLogin SDK for JavaScript provides easy integration for your application to OntLogin.
 
+## Documentation
+
+Visit [docs.ont.io](https://docs.ont.io/decentralized-identity-and-data/ontid/ont-login/front-end-javascript-sdk)
+
 ## Getting Started
 
 ### ES Module
@@ -66,11 +70,3 @@ fetch("server-url", { body: challengeResponse });
 
 - [vue](https://github.com/ontology-tech/ontlogin-sdk-js/tree/main/example/vue-demo)
 - [pure HTML](https://github.com/ontology-tech/ontlogin-sdk-js/tree/main/example/html-demo)
-
-## npm
-
-publish by yzy123123
-
-## TODO
-
-- [ ] update typescript version
