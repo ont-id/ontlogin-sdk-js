@@ -13,11 +13,12 @@ declare enum Action {
     IdAuth = 0,
     IdAuthAndVcAuth = 1
 }
-declare enum Error {
+declare enum ErrorEnum {
     VersionNotSupport = "ERR_WRONG_VERSION",
     TypeNotSupport = "ERR_TYPE_NOT_SUPPORTED",
     ActionNotSupport = "ERR_ACTION_NOT_SUPPORTED",
-    UnknownError = "ERR_UNDEFINED"
+    UnknownError = "ERR_UNDEFINED",
+    UserCanceled = "USER_CANCELED"
 }
 declare enum QrStatus {
     Pending = 0,
@@ -122,17 +123,19 @@ interface SignData {
  * @typeParam T Response type.
  * @param url Request url.
  * @param body Request body.
+ * @param signal AbortSignal for cancel request.
  * @return Promise response.
  */
-declare const postRequest: <T>(url: string, body: any) => Promise<T>;
+declare const postRequest: <T>(url: string, body: any, signal?: AbortSignal | undefined) => Promise<T>;
 /**
  * Get request in json, a simple wrapper of fetch.
  * @typeParam T Response type.
  * @param url Request url.
  * @param path Request path i.e. 'id' or 'news/id'.
+ * @param signal AbortSignal for cancel request.
  * @return Promise response.
  */
-declare const getRequest: <T>(url: string, path: string) => Promise<T>;
+declare const getRequest: <T>(url: string, path: string, signal?: AbortSignal | undefined) => Promise<T>;
 /**
  * Async wait some time.
  * @param time Second amount.
@@ -167,10 +170,14 @@ declare const requestQR: (challenge: AuthChallenge) => Promise<QRResult>;
  */
 declare const queryQRResult: (id: string, duration?: number) => Promise<AuthResponse>;
 /**
+ * Stop query QR result
+ */
+declare const cancelQueryQRResult: () => void;
+/**
  * Create the object for the wallet to sign.
  * @param challenge - The AuthChallenge from server.
  * @param account - Signer did.
  */
 declare const createSignData: (challenge: AuthChallenge, account: string) => SignData;
 
-export { Action, AuthChallenge, AuthRequest, AuthResponse, Error, MessageType, Proof, QRResult, QrStatus, RequestUrl, SignData, VCFilter, Version, createAuthRequest, createSignData, getRequest, postRequest, queryQRResult, requestQR, wait };
+export { Action, AuthChallenge, AuthRequest, AuthResponse, ErrorEnum, MessageType, Proof, QRResult, QrStatus, RequestUrl, SignData, VCFilter, Version, cancelQueryQRResult, createAuthRequest, createSignData, getRequest, postRequest, queryQRResult, requestQR, wait };

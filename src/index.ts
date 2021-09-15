@@ -5,7 +5,14 @@ import {
   QRResult,
   SignData,
 } from "./type";
-import { Action, MessageType, QrStatus, RequestUrl, Version } from "./enum";
+import {
+  Action,
+  ErrorEnum,
+  MessageType,
+  QrStatus,
+  RequestUrl,
+  Version,
+} from "./enum";
 import { getRequest, postRequest, wait } from "./utils";
 
 export * from "./type";
@@ -56,6 +63,9 @@ export const requestQR = async (
   };
 };
 
+let isQueryCanceled = false;
+let abortController: AbortController | null = null;
+
 /**
  * Query QR result from ontlogin QR server until get result or error.
  * @param id - QR id.
@@ -66,18 +76,45 @@ export const queryQRResult = async (
   id: string,
   duration = 1000
 ): Promise<AuthResponse> => {
-  const { result, error, desc } = await getRequest(RequestUrl.getQRResult, id);
-  if (error) {
-    throw new Error(desc);
+  if (isQueryCanceled) {
+    isQueryCanceled = false;
+    abortController = null;
+    throw new Error(ErrorEnum.UserCanceled);
   }
-  if (result.state === QrStatus.Pending) {
-    await wait(duration);
-    return queryQRResult(id);
+  try {
+    abortController = new AbortController();
+    const { result, error, desc } = await getRequest(
+      RequestUrl.getQRResult,
+      id,
+      abortController.signal
+    );
+    if (error) {
+      throw new Error(desc);
+    }
+    if (result.state === QrStatus.Pending) {
+      await wait(duration);
+      return queryQRResult(id);
+    }
+    if (result.state === QrStatus.Success) {
+      return JSON.parse(result.clientResponse);
+    }
+    throw new Error(result.error);
+  } catch (err) {
+    if ((err as Error).name === "AbortError") {
+      isQueryCanceled = false;
+      abortController = null;
+      throw new Error(ErrorEnum.UserCanceled);
+    }
+    throw err;
   }
-  if (result.state === QrStatus.Success) {
-    return JSON.parse(result.clientResponse);
-  }
-  throw new Error(result.error);
+};
+
+/**
+ * Stop query QR result
+ */
+export const cancelQueryQRResult = (): void => {
+  isQueryCanceled = true;
+  abortController?.abort();
 };
 
 /**

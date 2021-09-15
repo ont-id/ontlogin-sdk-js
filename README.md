@@ -57,7 +57,19 @@ const { text, id } = await requestQR(challenge);
 4. Show QR code ui and query scan result from ontlogin QR server.
 
 ```js
-const challengeResponse = await queryQRResult(id);
+import { queryQRResult, cancelQueryQRResult, ErrorEnum } from "ontlogin";
+
+try {
+  const challengeResponse = await queryQRResult(id);
+} catch (e) {
+  if (e.message === ErrorEnum.UserCanceled) {
+    // handle cancel
+  } else {
+    // handle error
+  }
+}
+
+cancelQueryQRResult(); // Cancel fetching result if you need.
 ```
 
 5. Submit 'challenge response' to your server.

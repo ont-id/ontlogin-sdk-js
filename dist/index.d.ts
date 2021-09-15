@@ -32,6 +32,10 @@ export declare const requestQR: (challenge: AuthChallenge) => Promise<QRResult>;
  */
 export declare const queryQRResult: (id: string, duration?: number) => Promise<AuthResponse>;
 /**
+ * Stop query QR result
+ */
+export declare const cancelQueryQRResult: () => void;
+/**
  * Create the object for the wallet to sign.
  * @param challenge - The AuthChallenge from server.
  * @param account - Signer did.

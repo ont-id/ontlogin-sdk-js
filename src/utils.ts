@@ -3,10 +3,15 @@
  * @typeParam T Response type.
  * @param url Request url.
  * @param body Request body.
+ * @param signal AbortSignal for cancel request.
  * @return Promise response.
  */
-// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types, @typescript-eslint/no-explicit-any
-export const postRequest = async <T>(url: string, body: any): Promise<T> => {
+export const postRequest = async <T>(
+  url: string,
+  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types,@typescript-eslint/no-explicit-any
+  body: any,
+  signal?: AbortSignal
+): Promise<T> => {
   return fetch(url, {
     method: "post",
     body: JSON.stringify(body),
@@ -14,6 +19,7 @@ export const postRequest = async <T>(url: string, body: any): Promise<T> => {
       Accept: "application/json",
       "Content-Type": "application/json",
     },
+    signal,
   }).then((res) => res.json());
 };
 
@@ -22,10 +28,15 @@ export const postRequest = async <T>(url: string, body: any): Promise<T> => {
  * @typeParam T Response type.
  * @param url Request url.
  * @param path Request path i.e. 'id' or 'news/id'.
+ * @param signal AbortSignal for cancel request.
  * @return Promise response.
  */
-export const getRequest = async <T>(url: string, path: string): Promise<T> => {
-  return fetch(`${url}/${path}`).then((res) => res.json());
+export const getRequest = async <T>(
+  url: string,
+  path: string,
+  signal?: AbortSignal
+): Promise<T> => {
+  return fetch(`${url}/${path}`, { signal }).then((res) => res.json());
 };
 
 /**

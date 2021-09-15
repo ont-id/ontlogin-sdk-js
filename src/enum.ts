@@ -16,11 +16,12 @@ export enum Action {
   IdAuthAndVcAuth = 1,
 }
 
-export enum Error {
+export enum ErrorEnum {
   VersionNotSupport = "ERR_WRONG_VERSION",
   TypeNotSupport = "ERR_TYPE_NOT_SUPPORTED",
   ActionNotSupport = "ERR_ACTION_NOT_SUPPORTED",
   UnknownError = "ERR_UNDEFINED",
+  UserCanceled = "USER_CANCELED",
 }
 
 export enum QrStatus {

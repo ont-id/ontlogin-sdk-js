@@ -5,13 +5,16 @@
     <title>Title</title>
   </head>
   <body>
-    <button id="login">login</button>
+    <button id="login">Login</button>
+    <button id="cancel">Cancel</button>
     <script type="module">
       import {
         createAuthRequest,
         postRequest,
         requestQR,
         queryQRResult,
+        cancelQueryQRResult,
+        ErrorEnum,
       } from "../../dist/ontlogin.es.js";
 
       function showQr(text) {
@@ -19,25 +22,32 @@
       }
 
       async function login() {
-        const authRequest = createAuthRequest(0);
+        const authRequest = createAuthRequest();
         const authChallenge = await postRequest(
-          "server-url/challenge",
+          "http://172.168.3.38:3000/requestChallenge",
           authRequest
         );
         const { text, id } = await requestQR(authChallenge);
         showQr(text);
-        const challengeResponse = await queryQRResult(id);
-        const result = await postRequest(
-          "server-url/response",
-          challengeResponse
-        );
-        console.log(result);
+        try {
+          const challengeResponse = await queryQRResult(id);
+          const result = await postRequest(
+            "http://172.168.3.38:3000/submitChallenge",
+            challengeResponse
+          );
+          console.log(result);
+        } catch (e) {
+          if (e.message === ErrorEnum.UserCanceled) {
+            console.log("is canceled");
+          }
+          console.dir(e);
+        }
       }
 
-      const button = document.querySelector("#login");
-      if (button) {
-        button.addEventListener("click", login);
-      }
+      document.querySelector("#login").addEventListener("click", login);
+      document.querySelector("#cancel").addEventListener("click", () => {
+        cancelQueryQRResult();
+      });
     </script>
   </body>
 </html>
