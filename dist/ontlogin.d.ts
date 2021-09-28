@@ -80,7 +80,7 @@ interface AuthChallenge {
 interface Proof {
     type: string;
     verificationMethod: string;
-    created: string;
+    created: number;
     value: string;
 }
 /**

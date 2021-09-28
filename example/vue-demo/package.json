@@ -7,7 +7,7 @@
     "serve": "vite preview"
   },
   "dependencies": {
-    "ontlogin": "^0.0.6",
+    "ontlogin": "^0.0.8",
     "vue": "^3.0.5"
   },
   "devDependencies": {

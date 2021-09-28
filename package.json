@@ -1,10 +1,9 @@
 {
   "name": "ontlogin",
-  "version": "0.0.7",
+  "version": "0.0.10",
   "description": "ONT LOGIN JS SDK",
   "main": "dist/ontlogin.cjs.js",
   "module": "dist/ontlogin.es.js",
-  "browser": "dist/ontlogin.js",
   "scripts": {
     "build": "npm run clean && rollup -c",
     "prepublishOnly": "npm run build",

@@ -35,14 +35,14 @@ export default [
     output: [
       {
         name: moduleName,
-        file: pkg.browser,
+        file: "dist/ontlogin.js",
         format: "iife",
         sourcemap: "inline",
         banner,
       },
       {
         name: moduleName,
-        file: pkg.browser.replace(".js", ".min.js"),
+        file: "dist/ontlogin.min.js",
         format: "iife",
         sourcemap: false,
         banner,

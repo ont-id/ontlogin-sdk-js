@@ -8,23 +8,18 @@ import {
 
 const showQr = (text) => {
   console.log("show qr code of", text);
-}
+};
 
 const login = async () => {
   const authRequest = createAuthRequest(0);
-  const authChallenge = await postRequest(
-      "server-url/challenge",
-      authRequest
-  );
-  const {text, id} = await requestQR(authChallenge);
+  console.log("authRequest", authRequest);
+  const authChallenge = await postRequest("server-url/challenge", authRequest);
+  const { text, id } = await requestQR(authChallenge);
   showQr(text);
   const challengeResponse = await queryQRResult(id);
-  const result = await postRequest(
-      "server-url/response",
-      challengeResponse
-  );
+  const result = await postRequest("server-url/response", challengeResponse);
   console.log(result);
-}
+};
 </script>
 
 <template>

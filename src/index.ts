@@ -114,7 +114,9 @@ export const queryQRResult = async (
  */
 export const cancelQueryQRResult = (): void => {
   isQueryCanceled = true;
-  abortController?.abort();
+  if (abortController) {
+    abortController.abort();
+  }
 };
 
 /**
