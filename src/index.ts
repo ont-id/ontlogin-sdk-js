@@ -41,6 +41,7 @@ export const createAuthRequest = (
 /**
  * Get QR with the AuthChallenge from ontologin QR server.
  * @param challenge - The AuthChallenge from your server.
+ * @param url - Custom request url.
  * @return Text for generating the QR code and id for query scan result.
  * @example
  * ```typescript
@@ -48,10 +49,11 @@ export const createAuthRequest = (
  * ```
  */
 export const requestQR = async (
-  challenge: AuthChallenge
+  challenge: AuthChallenge,
+  url?: string
 ): Promise<QRResult> => {
   const { result, error, desc } = await postRequest(
-    RequestUrl.getQR,
+    url || RequestUrl.getQR,
     challenge
   );
   if (error) {
@@ -70,11 +72,13 @@ let abortController: AbortController | null = null;
  * Query QR result from ontlogin QR server until get result or error.
  * @param id - QR id.
  * @param duration - Time duration(ms) between each request(1000 by default).
+ * @param url - Custom request url.
  * @return The AuthResponse for submit to server.
  */
 export const queryQRResult = async (
   id: string,
-  duration = 1000
+  duration = 1000,
+  url?: string
 ): Promise<AuthResponse> => {
   if (isQueryCanceled) {
     isQueryCanceled = false;
@@ -84,7 +88,7 @@ export const queryQRResult = async (
   try {
     abortController = new AbortController();
     const { result, error, desc } = await getRequest(
-      RequestUrl.getQRResult,
+      url || RequestUrl.getQRResult,
       id,
       abortController.signal
     );
