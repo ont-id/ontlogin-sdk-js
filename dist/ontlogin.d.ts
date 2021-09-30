@@ -30,6 +30,10 @@ declare enum QrStatus {
  * @beta
  */
 declare enum RequestUrl {
+    getQR = "https://login.ont.id/scan/qr-code/challenge",
+    getQRResult = "https://login.ont.id/scan/qr-code/result"
+}
+declare enum RequestUrlTest {
     getQR = "http://172.168.3.240:31843/qr-code/challenge",
     getQRResult = "http://172.168.3.240:31843/qr-code/result"
 }
@@ -155,20 +159,22 @@ declare const createAuthRequest: (action?: Action) => AuthRequest;
 /**
  * Get QR with the AuthChallenge from ontologin QR server.
  * @param challenge - The AuthChallenge from your server.
+ * @param url - Custom request url.
  * @return Text for generating the QR code and id for query scan result.
  * @example
  * ```typescript
  * const { text, id } = await requestQR(challenge);
  * ```
  */
-declare const requestQR: (challenge: AuthChallenge) => Promise<QRResult>;
+declare const requestQR: (challenge: AuthChallenge, url?: string | undefined) => Promise<QRResult>;
 /**
  * Query QR result from ontlogin QR server until get result or error.
  * @param id - QR id.
  * @param duration - Time duration(ms) between each request(1000 by default).
+ * @param url - Custom request url.
  * @return The AuthResponse for submit to server.
  */
-declare const queryQRResult: (id: string, duration?: number) => Promise<AuthResponse>;
+declare const queryQRResult: (id: string, duration?: number, url?: string | undefined) => Promise<AuthResponse>;
 /**
  * Stop query QR result
  */
@@ -180,4 +186,4 @@ declare const cancelQueryQRResult: () => void;
  */
 declare const createSignData: (challenge: AuthChallenge, account: string) => SignData;
 
-export { Action, AuthChallenge, AuthRequest, AuthResponse, ErrorEnum, MessageType, Proof, QRResult, QrStatus, RequestUrl, SignData, VCFilter, Version, cancelQueryQRResult, createAuthRequest, createSignData, getRequest, postRequest, queryQRResult, requestQR, wait };
+export { Action, AuthChallenge, AuthRequest, AuthResponse, ErrorEnum, MessageType, Proof, QRResult, QrStatus, RequestUrl, RequestUrlTest, SignData, VCFilter, Version, cancelQueryQRResult, createAuthRequest, createSignData, getRequest, postRequest, queryQRResult, requestQR, wait };

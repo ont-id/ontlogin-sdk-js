@@ -17,20 +17,22 @@ export declare const createAuthRequest: (action?: Action) => AuthRequest;
 /**
  * Get QR with the AuthChallenge from ontologin QR server.
  * @param challenge - The AuthChallenge from your server.
+ * @param url - Custom request url.
  * @return Text for generating the QR code and id for query scan result.
  * @example
  * ```typescript
  * const { text, id } = await requestQR(challenge);
  * ```
  */
-export declare const requestQR: (challenge: AuthChallenge) => Promise<QRResult>;
+export declare const requestQR: (challenge: AuthChallenge, url?: string | undefined) => Promise<QRResult>;
 /**
  * Query QR result from ontlogin QR server until get result or error.
  * @param id - QR id.
  * @param duration - Time duration(ms) between each request(1000 by default).
+ * @param url - Custom request url.
  * @return The AuthResponse for submit to server.
  */
-export declare const queryQRResult: (id: string, duration?: number) => Promise<AuthResponse>;
+export declare const queryQRResult: (id: string, duration?: number, url?: string | undefined) => Promise<AuthResponse>;
 /**
  * Stop query QR result
  */

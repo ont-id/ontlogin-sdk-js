@@ -30,6 +30,10 @@ export declare enum QrStatus {
  * @beta
  */
 export declare enum RequestUrl {
+    getQR = "https://login.ont.id/scan/qr-code/challenge",
+    getQRResult = "https://login.ont.id/scan/qr-code/result"
+}
+export declare enum RequestUrlTest {
     getQR = "http://172.168.3.240:31843/qr-code/challenge",
     getQRResult = "http://172.168.3.240:31843/qr-code/result"
 }
