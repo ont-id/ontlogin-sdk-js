@@ -89,3 +89,66 @@ export interface SignData {
   did: string;
   created: number;
 }
+
+/**
+ * Object for the wallet to sign with EIP-712,
+ * https://eips.ethereum.org/EIPS/eip-712.
+ */
+export interface SignData712 {
+  types: {
+    EIP712Domain: [
+      {
+        name: "name";
+        type: "string";
+      },
+      {
+        name: "version";
+        type: "string";
+      }
+    ];
+    ClientResponseMsg: [
+      {
+        name: "type";
+        type: "string";
+      },
+      {
+        name: "serverName";
+        type: "string";
+      },
+      {
+        name: "serverUrl";
+        type: "string";
+      },
+      {
+        name: "serverDid";
+        type: "string";
+      },
+      {
+        name: "nonce";
+        type: "string";
+      },
+      {
+        name: "did";
+        type: "string";
+      },
+      {
+        name: "created";
+        type: "uint256";
+      }
+    ];
+  };
+  primaryType: "ClientResponseMsg";
+  domain: {
+    name: "ontlogin";
+    version: "v1.0.0";
+  };
+  message: {
+    type: "ClientResponse";
+    serverName: string;
+    serverUrl: string;
+    serverDid: string;
+    nonce: string;
+    did?: string;
+    created: number;
+  };
+}

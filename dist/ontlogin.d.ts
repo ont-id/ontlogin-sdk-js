@@ -121,6 +121,68 @@ interface SignData {
     did: string;
     created: number;
 }
+/**
+ * Object for the wallet to sign with EIP-712,
+ * https://eips.ethereum.org/EIPS/eip-712.
+ */
+interface SignData712 {
+    types: {
+        EIP712Domain: [
+            {
+                name: "name";
+                type: "string";
+            },
+            {
+                name: "version";
+                type: "string";
+            }
+        ];
+        ClientResponseMsg: [
+            {
+                name: "type";
+                type: "string";
+            },
+            {
+                name: "serverName";
+                type: "string";
+            },
+            {
+                name: "serverUrl";
+                type: "string";
+            },
+            {
+                name: "serverDid";
+                type: "string";
+            },
+            {
+                name: "nonce";
+                type: "string";
+            },
+            {
+                name: "did";
+                type: "string";
+            },
+            {
+                name: "created";
+                type: "uint256";
+            }
+        ];
+    };
+    primaryType: "ClientResponseMsg";
+    domain: {
+        name: "ontlogin";
+        version: "v1.0.0";
+    };
+    message: {
+        type: "ClientResponse";
+        serverName: string;
+        serverUrl: string;
+        serverDid: string;
+        nonce: string;
+        did?: string;
+        created: number;
+    };
+}
 
 /**
  * Post request in json, a simple wrapper of fetch.
@@ -185,5 +247,11 @@ declare const cancelQueryQRResult: () => void;
  * @param account - Signer did.
  */
 declare const createSignData: (challenge: AuthChallenge, account: string) => SignData;
+/**
+ * Create the object for the wallet to sign use method eth_signTypedData_v4.
+ * @param challenge - The AuthChallenge from server.
+ * @param account - Signer did.
+ */
+declare const createSignData712: (challenge: AuthChallenge, account: string) => SignData712;
 
-export { Action, AuthChallenge, AuthRequest, AuthResponse, ErrorEnum, MessageType, Proof, QRResult, QrStatus, RequestUrl, RequestUrlTest, SignData, VCFilter, Version, cancelQueryQRResult, createAuthRequest, createSignData, getRequest, postRequest, queryQRResult, requestQR, wait };
+export { Action, AuthChallenge, AuthRequest, AuthResponse, ErrorEnum, MessageType, Proof, QRResult, QrStatus, RequestUrl, RequestUrlTest, SignData, SignData712, VCFilter, Version, cancelQueryQRResult, createAuthRequest, createSignData, createSignData712, getRequest, postRequest, queryQRResult, requestQR, wait };

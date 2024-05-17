@@ -4,6 +4,7 @@ import {
   AuthResponse,
   QRResult,
   SignData,
+  SignData712,
 } from "./type";
 import {
   Action,
@@ -141,4 +142,71 @@ export const createSignData = (
   nonce: challenge.nonce,
   did: account,
   created: Math.floor(Date.now() / 1000),
+});
+
+/**
+ * Create the object for the wallet to sign use method eth_signTypedData_v4.
+ * @param challenge - The AuthChallenge from server.
+ * @param account - Signer did.
+ */
+export const createSignData712 = (
+  challenge: AuthChallenge,
+  account: string
+): SignData712 => ({
+  types: {
+    EIP712Domain: [
+      {
+        name: "name",
+        type: "string",
+      },
+      {
+        name: "version",
+        type: "string",
+      },
+    ],
+    ClientResponseMsg: [
+      {
+        name: "type",
+        type: "string",
+      },
+      {
+        name: "serverName",
+        type: "string",
+      },
+      {
+        name: "serverUrl",
+        type: "string",
+      },
+      {
+        name: "serverDid",
+        type: "string",
+      },
+      {
+        name: "nonce",
+        type: "string",
+      },
+      {
+        name: "did",
+        type: "string",
+      },
+      {
+        name: "created",
+        type: "uint256",
+      },
+    ],
+  },
+  primaryType: "ClientResponseMsg",
+  domain: {
+    name: "ontlogin",
+    version: "v1.0.0",
+  },
+  message: {
+    type: "ClientResponse",
+    serverName: challenge.server.name,
+    serverUrl: challenge.server.url,
+    serverDid: challenge.server.did,
+    nonce: challenge.nonce,
+    did: account,
+    created: Math.floor(Date.now() / 1000),
+  },
 });

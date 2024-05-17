@@ -1,4 +1,4 @@
-import { AuthChallenge, AuthRequest, AuthResponse, QRResult, SignData } from "./type";
+import { AuthChallenge, AuthRequest, AuthResponse, QRResult, SignData, SignData712 } from "./type";
 import { Action } from "./enum";
 import { getRequest, postRequest, wait } from "./utils";
 export * from "./type";
@@ -43,3 +43,9 @@ export declare const cancelQueryQRResult: () => void;
  * @param account - Signer did.
  */
 export declare const createSignData: (challenge: AuthChallenge, account: string) => SignData;
+/**
+ * Create the object for the wallet to sign use method eth_signTypedData_v4.
+ * @param challenge - The AuthChallenge from server.
+ * @param account - Signer did.
+ */
+export declare const createSignData712: (challenge: AuthChallenge, account: string) => SignData712;
